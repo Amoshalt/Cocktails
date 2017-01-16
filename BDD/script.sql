@@ -18,7 +18,7 @@ INSERT INTO Cocktail (NOM_COCKTAIL, NUM_COCKTAIL, IMG, TAILLE) VALUES
 ('2', "TGV", "", 30),
 ('3', "Bloody Sunday", "", 100),
 ('4', "Jager Bomb", "", 290),
-('5', "Mojito", "", 23);
+('5', "Mojito", "", 230);
 
 
 #Création de la table 'Soft'
