@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="isi_projet2_tardymartial_remondvictorModelStoreContainer" CdmEntityContainer="isi_projet2_tardymartial_remondvictorEntities">
+    <EntitySetMapping Name="alcool">
+      <EntityTypeMapping TypeName="isi_projet2_tardymartial_remondvictorModel.alcool">
+        <MappingFragment StoreEntitySet="alcool">
+          <ScalarProperty Name="NOM_ALCOOL" ColumnName="NOM_ALCOOL" />
+          <ScalarProperty Name="NUM_ALCOOL" ColumnName="NUM_ALCOOL" />
+          <ScalarProperty Name="DEGRE" ColumnName="DEGRE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cocktail">
+      <EntityTypeMapping TypeName="isi_projet2_tardymartial_remondvictorModel.cocktail">
+        <MappingFragment StoreEntitySet="cocktail">
+          <ScalarProperty Name="NOM_COCKTAIL" ColumnName="NOM_COCKTAIL" />
+          <ScalarProperty Name="NUM_COCKTAIL" ColumnName="NUM_COCKTAIL" />
+          <ScalarProperty Name="IMG" ColumnName="IMG" />
+          <ScalarProperty Name="TAILLE" ColumnName="TAILLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="etaperecette">
+      <EntityTypeMapping TypeName="isi_projet2_tardymartial_remondvictorModel.etaperecette">
+        <MappingFragment StoreEntitySet="etaperecette">
+          <ScalarProperty Name="NUM_COCKTAIL" ColumnName="NUM_COCKTAIL" />
+          <ScalarProperty Name="NUM_ETAPE" ColumnName="NUM_ETAPE" />
+          <ScalarProperty Name="QUANTITE" ColumnName="QUANTITE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ingredientalcool">
+      <EntityTypeMapping TypeName="isi_projet2_tardymartial_remondvictorModel.ingredientalcool">
+        <MappingFragment StoreEntitySet="ingredientalcool">
+          <ScalarProperty Name="NUM_COCKTAIL" ColumnName="NUM_COCKTAIL" />
+          <ScalarProperty Name="NUM_ALCOOL" ColumnName="NUM_ALCOOL" />
+          <ScalarProperty Name="QUANTITE" ColumnName="QUANTITE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ingredientsoft">
+      <EntityTypeMapping TypeName="isi_projet2_tardymartial_remondvictorModel.ingredientsoft">
+        <MappingFragment StoreEntitySet="ingredientsoft">
+          <ScalarProperty Name="NUM_COCKTAIL" ColumnName="NUM_COCKTAIL" />
+          <ScalarProperty Name="NUM_SOFT" ColumnName="NUM_SOFT" />
+          <ScalarProperty Name="QUANTITE" ColumnName="QUANTITE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="soft">
+      <EntityTypeMapping TypeName="isi_projet2_tardymartial_remondvictorModel.soft">
+        <MappingFragment StoreEntitySet="soft">
+          <ScalarProperty Name="NOM_SOFT" ColumnName="NOM_SOFT" />
+          <ScalarProperty Name="NUM_SOFT" ColumnName="NUM_SOFT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

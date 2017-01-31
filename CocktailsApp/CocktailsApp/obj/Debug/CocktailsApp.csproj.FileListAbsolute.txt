@@ -1,0 +1,16 @@
+C:\Users\Victor\Documents\Programmation\C#\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\CocktailsApp.exe.config
+C:\Users\Victor\Documents\Programmation\C#\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\CocktailsApp.exe
+C:\Users\Victor\Documents\Programmation\C#\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\CocktailsApp.pdb
+C:\Users\Victor\Documents\Programmation\C#\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\MySql.Data.dll
+C:\Users\Victor\Documents\Programmation\C#\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\MySql.Data.Entity.EF5.dll
+C:\Users\Victor\Documents\Programmation\C#\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Users\Victor\Documents\Programmation\C#\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\MySql.Data.xml
+C:\Users\Victor\Documents\Programmation\C#\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\MySql.Data.Entity.EF5.xml
+C:\Users\Victor\Documents\Programmation\C#\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\MySql.Data.Entity.EF6.xml
+C:\Users\Victor\Documents\Programmation\C#\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.csprojResolveAssemblyReference.cache
+C:\Users\Victor\Documents\Programmation\C#\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.Properties.Resources.resources
+C:\Users\Victor\Documents\Programmation\C#\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.csproj.GenerateResource.Cache
+C:\Users\Victor\Documents\Programmation\C#\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.exe
+C:\Users\Victor\Documents\Programmation\C#\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.pdb
+C:\Users\Victor\Documents\Programmation\C#\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\EntityFramework.dll
+C:\Users\Victor\Documents\Programmation\C#\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\EntityFramework.xml
