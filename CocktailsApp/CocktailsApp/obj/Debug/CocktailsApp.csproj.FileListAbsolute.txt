@@ -14,3 +14,16 @@ C:\Users\Victor\Documents\Programmation\C#\Cocktails\CocktailsApp\CocktailsApp\o
 C:\Users\Victor\Documents\Programmation\C#\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.pdb
 C:\Users\Victor\Documents\Programmation\C#\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\EntityFramework.dll
 C:\Users\Victor\Documents\Programmation\C#\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\EntityFramework.xml
+E:\martial\Documents\ISI\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\CocktailsApp.exe.config
+E:\martial\Documents\ISI\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.exe
+E:\martial\Documents\ISI\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.pdb
+E:\martial\Documents\ISI\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.csproj.GenerateResource.Cache
+E:\martial\Documents\ISI\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.Form1.resources
+E:\martial\Documents\ISI\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\CocktailsApp.exe
+E:\martial\Documents\ISI\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\CocktailsApp.pdb
+E:\martial\Documents\ISI\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\EntityFramework.dll
+E:\martial\Documents\ISI\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\MySql.Data.dll
+E:\martial\Documents\ISI\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\MySql.Data.Entity.EF5.dll
+E:\martial\Documents\ISI\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\MySql.Data.Entity.EF6.dll
+E:\martial\Documents\ISI\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\EntityFramework.xml
+E:\martial\Documents\ISI\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.csprojResolveAssemblyReference.cache
