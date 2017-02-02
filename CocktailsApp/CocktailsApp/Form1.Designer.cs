@@ -2,7 +2,6 @@
 {
     partial class Form1
     {
-        private isi_projet2_tardymartial_remondvictorEntities bdcockent;
         /// <summary>
         /// Required designer variable.
         /// </summary>

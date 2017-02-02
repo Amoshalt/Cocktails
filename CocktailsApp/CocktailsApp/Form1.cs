@@ -17,6 +17,8 @@ namespace CocktailsApp
 {
     public partial class Form1 : Form
     {
+        private isi_projet2_tardymartial_remondvictorEntities connexionBD;
+
         public Form1()
         {
             InitializeComponent();
@@ -37,6 +39,7 @@ namespace CocktailsApp
         {
             affichageListCocktails();
         }
+
         private void affichageListCocktails()
         {
             cocktailsTB.Text = "";
@@ -46,17 +49,17 @@ namespace CocktailsApp
             cocktailsGridView.Visible = true;
             //Initialize the ObjectContext
 
-            bdcockent = new isi_projet2_tardymartial_remondvictorEntities();
-            var objectContext = ((IObjectContextAdapter)bdcockent).ObjectContext;
-            var set = objectContext.CreateObjectSet<cocktail>();
+            connexionBD = new isi_projet2_tardymartial_remondvictorEntities();
+            var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
+            var table = contexteBD.CreateObjectSet<cocktail>();
             try
             {
-                var cocktailQuery = from d in set
-                                    select d.NOM_COCKTAIL;
+                var requete = from d in table
+                              select d.NOM_COCKTAIL;
 
                 cocktailsGridView.ColumnCount = 1;
                 cocktailsGridView.Columns[0].Name = "Nom";
-                var repNomCock = ((ObjectQuery)cocktailQuery).Execute(MergeOption.AppendOnly);
+                var repNomCock = ((ObjectQuery)requete).Execute(MergeOption.AppendOnly);
                 foreach (string nom in repNomCock)
                 {
                     cocktailsGridView.Rows.Add(nom);
@@ -69,7 +72,24 @@ namespace CocktailsApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("E1 : " + ex.GetBaseException().Message);
+            }
+            var table2 = contexteBD.CreateObjectSet<soft>();
+            try
+            {
+                var requete = from t in table2
+                              select t.NOM_SOFT;
+
+                var nums = ((ObjectQuery)requete).Execute(MergeOption.AppendOnly);
+
+                foreach(string num in nums)
+                {
+                    Console.WriteLine("" + num);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("E2 : " + ex.GetBaseException().Message);
             }
         }
     }
