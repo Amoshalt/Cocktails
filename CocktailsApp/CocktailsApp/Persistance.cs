@@ -88,5 +88,52 @@ namespace CocktailsApp
             return liste;
         }
 
+        public ArrayList getIngredientsAlcool(int numCock)
+        {
+            var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
+            var table = contexteBD.CreateObjectSet<ingredientalcool>();
+            ArrayList listIAC = new ArrayList();
+
+            try
+            {
+                var requete = from d in table
+                              where d.NUM_COCKTAIL == numCock
+                              select d;
+                var repIAC = ((ObjectQuery)requete).Execute(MergeOption.AppendOnly);
+                foreach (ingredientalcool ia in repIAC)
+                {
+                    listIAC.Add(ia);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("E1 : " + ex.GetBaseException().Message);
+            }
+            return listIAC;
+        }
+        public ArrayList getIngredientsSoft(int numCock)
+        {
+            var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
+            var table = contexteBD.CreateObjectSet<ingredientsoft>();
+            ArrayList listIAS = new ArrayList();
+
+            try
+            {
+                var requete = from d in table
+                              where d.NUM_COCKTAIL == numCock
+                              select d;
+                var repIAS = ((ObjectQuery)requete).Execute(MergeOption.AppendOnly);
+                foreach (ingredientalcool ia in repIAS)
+                {
+                    listIAS.Add(ia);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("E1 : " + ex.GetBaseException().Message);
+            }
+            return listIAS;
+        }
+
     }
 }
