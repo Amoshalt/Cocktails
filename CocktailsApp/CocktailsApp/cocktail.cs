@@ -18,5 +18,10 @@ namespace CocktailsApp
         public int NUM_COCKTAIL { get; set; }
         public string IMG { get; set; }
         public int TAILLE { get; set; }
+
+        public override string ToString()
+        {
+            return "N°" + NUM_COCKTAIL + " : " + NOM_COCKTAIL + ", " + TAILLE + "mL.";
+        }
     }
 }

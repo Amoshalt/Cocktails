@@ -151,6 +151,22 @@ namespace CocktailsApp
             //S'il y avait deja qqc on l'efface
             Vider();
             //Affichage des résultats
+            //parametres d'affichage
+            int py = 50, ecart = 30;
+            Label lTitre = new Label();
+            m_composants.Add(lTitre);
+            lTitre.Text = "Cocktails disponibles :";
+            lTitre.Parent = this;
+            lTitre.Location = new System.Drawing.Point((this.Width - lTitre.Size.Width) / 2, py);
+            for(int i = 0; i < cocktails.Count; i++)
+            {
+                int y = py + ((i + 1) * ecart);
+                Label lCo = new Label();
+                m_composants.Add(lCo);
+                lCo.Text = cocktails[i].ToString();
+                lCo.Parent = this;
+                lCo.Location = new System.Drawing.Point((this.Width - lCo.Size.Width) / 2, y);
+            }
         }
 
         //Fonction de nettoyage de l'écran
