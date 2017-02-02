@@ -13,8 +13,10 @@ namespace CocktailsApp
         protected Persistance m_pers;
         protected string[] m_softs;
         protected bool[] m_softOK;
+        protected int[] m_softID;
         protected string[] m_alcools;
         protected bool[] m_alcoolOK;
+        protected int[] m_alcoolID;
 
         public Recherche()
         {
@@ -36,7 +38,8 @@ namespace CocktailsApp
             m_softOK = new bool[softs.Count];
             for(int i = 0; i < softs.Count; i++)
             {
-                m_softs[i] = (string)softs[i];
+                m_softs[i] = ((soft)softs[i]).NOM_SOFT;
+                m_alcoolID[i] = ((soft)softs[i]).NUM_SOFT;
                 m_softOK[i] = false;
             }
 
@@ -46,7 +49,8 @@ namespace CocktailsApp
             m_alcoolOK = new bool[alcools.Count];
             for (int i = 0; i < alcools.Count; i++)
             {
-                m_alcools[i] = (string)alcools[i];
+                m_alcools[i] = ((alcool)alcools[i]).NOM_ALCOOL;
+                m_alcoolID[i] = ((alcool)alcools[i]).NUM_ALCOOL;
                 m_alcoolOK[i] = false;
             }
         }
@@ -56,9 +60,27 @@ namespace CocktailsApp
             return m_softs;
         }
 
+        public string[] NomAlcool()
+        {
+            return m_alcools;
+        }
+
         public void ModifSoft(int index)
         {
-            m_softOK[index] = !m_softOK[index];
+            if((index >= 0) && (index < m_softOK.Length))
+                m_softOK[index] = !m_softOK[index];
+        }
+
+        public void ModifAlcool(int index)
+        {
+            if ((index >= 0) && (index < m_alcoolOK.Length))
+                m_alcoolOK[index] = !m_alcoolOK[index];
+        }
+
+        public ArrayList Valider()
+        {
+            ArrayList liste = new ArrayList();
+            return liste;
         }
     }
 }
