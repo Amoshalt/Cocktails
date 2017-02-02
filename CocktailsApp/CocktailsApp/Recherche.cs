@@ -8,9 +8,9 @@ using System.Collections;
 
 namespace CocktailsApp
 {
-    class Recherche
+    public class Recherche
     {
-        protected Persistance m_pers;
+        protected Persistance m_persistance;
         protected string[] m_softs;
         protected bool[] m_softOK;
         protected int[] m_softID;
@@ -30,22 +30,24 @@ namespace CocktailsApp
 
         protected void Initialisation(Persistance p)
         {
-            m_pers = p;
+            m_persistance = p;
 
             //Initialisation des softs
-            ArrayList softs = m_pers.getSofts();
+            ArrayList softs = m_persistance.getSofts();
             m_softs = new string[softs.Count];
+            m_softID = new int[softs.Count];
             m_softOK = new bool[softs.Count];
             for(int i = 0; i < softs.Count; i++)
             {
                 m_softs[i] = ((soft)softs[i]).NOM_SOFT;
-                m_alcoolID[i] = ((soft)softs[i]).NUM_SOFT;
+                m_softID[i] = ((soft)softs[i]).NUM_SOFT;
                 m_softOK[i] = false;
             }
 
             //Initialisation des alcools
-            ArrayList alcools = m_pers.getAlccols();
+            ArrayList alcools = m_persistance.getAlccols();
             m_alcools = new string[alcools.Count];
+            m_alcoolID = new int[alcools.Count];
             m_alcoolOK = new bool[alcools.Count];
             for (int i = 0; i < alcools.Count; i++)
             {
@@ -67,7 +69,7 @@ namespace CocktailsApp
 
         public void ModifSoft(int index)
         {
-            if((index >= 0) && (index < m_softOK.Length))
+            if ((index >= 0) && (index < m_softOK.Length))
                 m_softOK[index] = !m_softOK[index];
         }
 
@@ -79,8 +81,18 @@ namespace CocktailsApp
 
         public ArrayList Valider()
         {
-            ArrayList liste = new ArrayList();
-            return liste;
+            ArrayList listeS = new ArrayList(), listeA = new ArrayList();
+            for(int i = 0; i < m_softOK.Length; i++)
+            {
+                if (m_softOK[i])
+                    listeS.Add(m_softID[i]);
+            }
+            for (int i = 0; i < m_alcoolOK.Length; i++)
+            {
+                if (m_alcoolOK[i])
+                    listeA.Add(m_alcoolID[i]);
+            }
+            return m_persistance.RechercheComposee(listeS, listeA);
         }
     }
 }

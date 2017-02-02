@@ -9,7 +9,7 @@ using System.Data.Entity.Infrastructure;
 
 namespace CocktailsApp
 {
-    class Persistance
+    public class Persistance
     {
         private isi_projet2_tardymartial_remondvictorEntities connexionBD;
 

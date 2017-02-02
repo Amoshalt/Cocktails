@@ -16,7 +16,12 @@ namespace CocktailsApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            Persistance persistance = new Persistance();
+            Recherche recherche = new Recherche(persistance);
+            Form1 vue = new Form1(recherche);
+
+            Application.Run(vue);
         }
     }
 }
