@@ -42,8 +42,7 @@ namespace CocktailsApp
             return listCocktail;
         }
 
-
-        public ArrayList getSoft()
+        public ArrayList getSofts()
         {
             var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
             var table = contexteBD.CreateObjectSet<soft>();
@@ -66,6 +65,28 @@ namespace CocktailsApp
             return listSoft;
         }
 
+        public ArrayList getAlccols()
+        {
+            var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
+            var table = contexteBD.CreateObjectSet<alcool>();
+            ArrayList liste = new ArrayList();
+
+            try
+            {
+                var requete = from t in table
+                              select t;
+                var res = ((ObjectQuery)requete).Execute(MergeOption.AppendOnly);
+                foreach (alcool al in res)
+                {
+                    liste.Add(al);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("E1 : " + ex.GetBaseException().Message);
+            }
+            return liste;
+        }
 
     }
 }
