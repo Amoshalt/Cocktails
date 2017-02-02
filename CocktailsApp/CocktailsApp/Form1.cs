@@ -1,25 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.Objects;
-using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 
 namespace CocktailsApp
 {
     public partial class Form1 : Form
     {
         private isi_projet2_tardymartial_remondvictorEntities connexionBD;
-
         public Form1()
         {
             InitializeComponent();
@@ -43,7 +29,7 @@ namespace CocktailsApp
         {
             cocktailsLB.Text = "";
             cocktailsLB.Visible = true;
-            ArrayList
+            
 
             
         }
