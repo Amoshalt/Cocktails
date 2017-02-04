@@ -57,6 +57,25 @@ namespace CocktailsApp
             }
         }
 
+        //Remet tous les booleens a 'false'
+        public void Clean()
+        {
+            for (int i = 0; i < m_softOK.Length; i++)
+                m_softOK[i] = false;
+            for (int i = 0; i < m_alcoolOK.Length; i++)
+                m_alcoolOK[i] = false;
+        }
+
+        public bool[] ListeSofts()
+        {
+            return m_softOK;
+        }
+
+        public bool[] ListeAlcools()
+        {
+            return m_alcoolOK;
+        }
+
         public string[] NomSoft()
         {
             return m_softs;
