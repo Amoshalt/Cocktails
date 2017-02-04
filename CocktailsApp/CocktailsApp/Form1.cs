@@ -13,17 +13,18 @@ namespace CocktailsApp
 
         public Form1()
         {
-            Initialiser(new Recherche());
+            Initialiser(new Recherche(), new ListeCocktails());
         }
 
-        public Form1(Recherche r)
+        public Form1(Recherche r, ListeCocktails lc)
         {
-            Initialiser(r);
+            Initialiser(r,lc);
         }
 
-        protected void Initialiser(Recherche r)
+        protected void Initialiser(Recherche r, ListeCocktails lc)
         {
             m_recherche = r;
+            m_lCocktails = lc;
             m_composants = new ArrayList();
             InitializeComponent();
         }
@@ -69,13 +70,35 @@ namespace CocktailsApp
             //S'il y avait déjà qqc d'afficher, on l'efface
             Vider();
             //On recupere la liste de cocktail + ingrédients
-            ArrayList[] cocktailsIngredients = m_lCocktails.getListeCI();
+            ArrayList cocktailsIngredients = m_lCocktails.getListeCI();
             //On recupere les noms de softs
             string[] softs = m_recherche.NomSoft();
 
-
+            //On affiche les alcools
+            //Parametres d'affichage
+            int apx = 50, apy = 50, ecart = 30;
+            m_composants.Add(new Label());
+            Label cocktailsLB = (Label)m_composants[m_composants.Count - 1];
+            cocktailsLB.Parent = this;
+            cocktailsLB.Location = new System.Drawing.Point(apx, apy);
             cocktailsLB.Text = "";
             cocktailsLB.Visible = true;
+
+            for(int i = 0; i< cocktailsIngredients.Count; i++)
+            {
+                ArrayList cock = ((ArrayList)cocktailsIngredients[i]);
+                ArrayList cockAlcools = ((ArrayList)cock[1]);
+                ArrayList cockSofts = ((ArrayList)cock[2]);
+
+                cocktailsLB.Text = cocktailsLB.Text + (String)cock[0] + ": ";
+                for( int j = 0; j < cockAlcools.Count; j++)
+                {
+                    cocktailsLB.Text = cocktailsLB.Text + ((alcool)cockAlcools[j]).NOM_ALCOOL + " ";
+                    cocktailsLB.Width = cocktailsLB.Width + ecart;
+                }
+                cocktailsLB.Text = cocktailsLB.Text + "\n";
+                cocktailsLB.Height = cocktailsLB.Height + ecart;
+            }
 
         }
 

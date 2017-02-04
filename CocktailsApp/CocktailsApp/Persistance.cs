@@ -89,7 +89,6 @@ namespace CocktailsApp
             return liste;
         }
 
-
         public ArrayList getIngredientsAlcool(int numCock)
         {
             var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
@@ -109,11 +108,10 @@ namespace CocktailsApp
             }
             catch(Exception ex)
             {
-                Console.WriteLine("E1 : " + ex.GetBaseException().Message);
+                Console.WriteLine("E getIngredientsAlcool : " + ex.GetBaseException().Message);
             }
             return listIAC;
         }
-
 
         public ArrayList getIngredientsSoft(int numCock)
         {
@@ -127,16 +125,76 @@ namespace CocktailsApp
                               where d.NUM_COCKTAIL == numCock
                               select d;
                 var repIAS = ((ObjectQuery)requete).Execute(MergeOption.AppendOnly);
-                foreach (ingredientalcool ia in repIAS)
+                foreach (ingredientsoft ia in repIAS)
                 {
                     listIAS.Add(ia);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Console.WriteLine("E1 : " + ex.GetBaseException().Message);
+                Console.WriteLine("E getIngredientsSoft : " + ex.GetBaseException().Message);
             }
             return listIAS;
+        }
+
+        public ArrayList getSoftsCocktail(int numCock)
+        {
+            var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
+            var table = contexteBD.CreateObjectSet<soft>();
+            ArrayList listeS = new ArrayList();
+            ArrayList listeIngrSoft = getIngredientsSoft(numCock);
+
+            for(int i = 0; i< listeIngrSoft.Count; i++)
+            {
+                int numSoft = ((ingredientsoft)listeIngrSoft[i]).NUM_SOFT;
+                try
+                {
+                    var requete = from d in table
+                                  where d.NUM_SOFT == numSoft
+                                  select d;
+                    var repS = ((ObjectQuery)requete).Execute(MergeOption.AppendOnly);
+                    foreach (soft s in repS)
+                    {
+                        listeS.Add(s);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("E getSoftsCocktails : " + ex.GetBaseException().Message);
+                }
+            }
+            return listeS;
+
+        }
+
+        public ArrayList getAlcoolsCocktail(int numCock)
+        {
+            var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
+            var table = contexteBD.CreateObjectSet<alcool>();
+            ArrayList listeS = new ArrayList();
+            ArrayList listeIngrAlcool = getIngredientsAlcool(numCock);
+
+            for (int i = 0; i < listeIngrAlcool.Count; i++)
+            {
+                int numAlcool = ((ingredientalcool)listeIngrAlcool[i]).NUM_ALCOOL;
+                try
+                {
+                    var requete = from d in table
+                                  where d.NUM_ALCOOL == numAlcool
+                                  select d;
+                    var repS = ((ObjectQuery)requete).Execute(MergeOption.AppendOnly);
+                    foreach (alcool s in repS)
+                    {
+                        listeS.Add(s);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("E getAlcoolsCocktail : " + ex.GetBaseException().Message);
+                }
+            }
+            return listeS;
+
         }
 
 
