@@ -89,6 +89,115 @@ namespace CocktailsApp
             return liste;
         }
 
+        public ArrayList getIngredientsAlcool(int numCock)
+        {
+            var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
+            var table = contexteBD.CreateObjectSet<ingredientalcool>();
+            ArrayList listIAC = new ArrayList();
+
+            try
+            {
+                var requete = from d in table
+                              where d.NUM_COCKTAIL == numCock
+                              select d;
+                var repIAC = ((ObjectQuery)requete).Execute(MergeOption.AppendOnly);
+                foreach (ingredientalcool ia in repIAC)
+                {
+                    listIAC.Add(ia);
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("E getIngredientsAlcool : " + ex.GetBaseException().Message);
+            }
+            return listIAC;
+        }
+
+        public ArrayList getIngredientsSoft(int numCock)
+        {
+            var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
+            var table = contexteBD.CreateObjectSet<ingredientsoft>();
+            ArrayList listIAS = new ArrayList();
+
+            try
+            {
+                var requete = from d in table
+                              where d.NUM_COCKTAIL == numCock
+                              select d;
+                var repIAS = ((ObjectQuery)requete).Execute(MergeOption.AppendOnly);
+                foreach (ingredientsoft ia in repIAS)
+                {
+                    listIAS.Add(ia);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("E getIngredientsSoft : " + ex.GetBaseException().Message);
+            }
+            return listIAS;
+        }
+
+        public ArrayList getSoftsCocktail(int numCock)
+        {
+            var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
+            var table = contexteBD.CreateObjectSet<soft>();
+            ArrayList listeS = new ArrayList();
+            ArrayList listeIngrSoft = getIngredientsSoft(numCock);
+
+            for(int i = 0; i< listeIngrSoft.Count; i++)
+            {
+                int numSoft = ((ingredientsoft)listeIngrSoft[i]).NUM_SOFT;
+                try
+                {
+                    var requete = from d in table
+                                  where d.NUM_SOFT == numSoft
+                                  select d;
+                    var repS = ((ObjectQuery)requete).Execute(MergeOption.AppendOnly);
+                    foreach (soft s in repS)
+                    {
+                        listeS.Add(s);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("E getSoftsCocktails : " + ex.GetBaseException().Message);
+                }
+            }
+            return listeS;
+
+        }
+
+        public ArrayList getAlcoolsCocktail(int numCock)
+        {
+            var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
+            var table = contexteBD.CreateObjectSet<alcool>();
+            ArrayList listeS = new ArrayList();
+            ArrayList listeIngrAlcool = getIngredientsAlcool(numCock);
+
+            for (int i = 0; i < listeIngrAlcool.Count; i++)
+            {
+                int numAlcool = ((ingredientalcool)listeIngrAlcool[i]).NUM_ALCOOL;
+                try
+                {
+                    var requete = from d in table
+                                  where d.NUM_ALCOOL == numAlcool
+                                  select d;
+                    var repS = ((ObjectQuery)requete).Execute(MergeOption.AppendOnly);
+                    foreach (alcool s in repS)
+                    {
+                        listeS.Add(s);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("E getAlcoolsCocktail : " + ex.GetBaseException().Message);
+                }
+            }
+            return listeS;
+
+        }
+
+
         /* Fonction de recherche des cocktails disponibles a partir d'une liste de softs et une autre d'alcools
          * parametres :
          *  > ArrayList : contient les numeros correspondant aux softs disponibles.

@@ -7,22 +7,25 @@ namespace CocktailsApp
 {
     public partial class Form1 : Form
     {
+        protected ListeCocktails m_lCocktails;
         protected Recherche m_recherche;
         protected ArrayList m_composants;
 
+
         public Form1()
         {
-            Initialiser(new Recherche());
+            Initialiser(new Recherche(), new ListeCocktails());
         }
 
-        public Form1(Recherche r)
+        public Form1(Recherche r, ListeCocktails lc)
         {
-            Initialiser(r);
+            Initialiser(r,lc);
         }
 
-        protected void Initialiser(Recherche r)
+        protected void Initialiser(Recherche r, ListeCocktails lc)
         {
             m_recherche = r;
+            m_lCocktails = lc;
             m_composants = new ArrayList();
             InitializeComponent();
             this.Size = new Size(800, 500);
@@ -41,7 +44,7 @@ namespace CocktailsApp
 
         private void listeDesCocktailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            affichageListCocktails();
+            AffichageCocktails();
         }
 
         private void RechercheEvent(object sender, EventArgs e)
@@ -63,7 +66,7 @@ namespace CocktailsApp
         {
             this.AffichageResultatsRecherche(m_recherche.Valider());
         }
-
+        
         private void RAZClick(Object sender, EventArgs e)
         {
             for(int i = 0; i < m_composants.Count; i++)
@@ -83,7 +86,43 @@ namespace CocktailsApp
             cocktailsLB.Visible = true;
             */
         }
-        
+
+        private void AffichageCocktails()
+        {
+            //S'il y avait déjà qqc d'afficher, on l'efface
+            Vider();
+            //On recupere la liste de cocktail + ingrédients
+            ArrayList cocktailsIngredients = m_lCocktails.getListeCI();
+            //On recupere les noms de softs
+            string[] softs = m_recherche.NomSoft();
+
+            //On affiche les alcools
+            //Parametres d'affichage
+            int apx = 50, apy = 50, ecart = 30;
+            m_composants.Add(new Label());
+            Label cocktailsLB = (Label)m_composants[m_composants.Count - 1];
+            cocktailsLB.Parent = this;
+            cocktailsLB.Location = new System.Drawing.Point(apx, apy);
+            cocktailsLB.Text = "";
+            cocktailsLB.Visible = true;
+
+            for (int i = 0; i < cocktailsIngredients.Count; i++)
+            {
+                ArrayList cock = ((ArrayList)cocktailsIngredients[i]);
+                ArrayList cockAlcools = ((ArrayList)cock[1]);
+                ArrayList cockSofts = ((ArrayList)cock[2]);
+
+                cocktailsLB.Text = cocktailsLB.Text + (String)cock[0] + ": ";
+                for (int j = 0; j < cockAlcools.Count; j++)
+                {
+                    cocktailsLB.Text = cocktailsLB.Text + ((alcool)cockAlcools[j]).NOM_ALCOOL + " ";
+                    cocktailsLB.Width = cocktailsLB.Width + ecart;
+                }
+                cocktailsLB.Text = cocktailsLB.Text + "\n";
+                cocktailsLB.Height = cocktailsLB.Height + ecart;
+            }
+        }
+
         private void AffichageRecherche()
         {
             //S'il y avait déjà qqc d'afficher, on l'efface
@@ -99,6 +138,7 @@ namespace CocktailsApp
             //Panneau pSofts = new Panneau(300, 50, 200, 300, "Softs : ", m_recherche.NomSoft());
             pSofts.Parent = this;
             m_composants.Add(pSofts);
+
 
             //Bouton de validation
             Button bVal = new Button();
