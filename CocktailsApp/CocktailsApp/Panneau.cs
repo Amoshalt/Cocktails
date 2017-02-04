@@ -60,6 +60,16 @@ namespace CocktailsApp
             m_sousPanel.Focus();
         }
 
+        protected void Survol(Object sender, EventArgs e)
+        {
+            ((Label)sender).BackColor = Color.LightGray;
+        }
+
+        protected void Sortie(Object sender, EventArgs e)
+        {
+            ((Label)sender).BackColor = Color.Transparent;
+        }
+
         public void Titre(string titre)
         {
             m_titre.Text = titre;
@@ -81,6 +91,8 @@ namespace CocktailsApp
                 m_lElements[i].Size = new Size(m_sousPanel.Width - (1 + px), ecart - 2);
                 m_lElements[i].Parent = m_sousPanel;
                 m_lElements[i].Text = liste[i];
+                m_lElements[i].MouseEnter += new EventHandler(Survol);
+                m_lElements[i].MouseLeave += new EventHandler(Sortie);
             }
         }
 
