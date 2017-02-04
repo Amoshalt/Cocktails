@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace CocktailsApp
 {
     
-    class ListeCocktails
+    public class ListeCocktails
     {
         protected Persistance m_persistance;
         protected int m_nbCocktails;
@@ -27,19 +27,39 @@ namespace CocktailsApp
         protected void Initialisation(Persistance p)
         {
             m_persistance = p;
-            ArrayList listeC = new ArrayList();
             listeC = m_persistance.getCocktails();
             m_nbCocktails = listeC.Count;
 
         }
-
+           
         public ArrayList[] getListeCI ()
         {
             ArrayList[] listeCI = new ArrayList[m_nbCocktails];
             ArrayList listeCIS = new ArrayList();
             ArrayList listeCIA = new ArrayList();
+            
+            for( int i = 0; i< m_nbCocktails; i++)
+            {
+                int NumCock = ((cocktail)listeC[i]).NUM_COCKTAIL;
+                String NomCock = ((cocktail)listeC[i]).NOM_COCKTAIL;
+                ArrayList listeIngrSoft = m_persistance.getIngredientsSoft(NumCock);
+                
+                for ( int j = 0; j< listeIngrSoft.Count;j++ )
+                {
+                    listeCIS.Add(listeIngrSoft[j]);
+                }
 
-            listeCIS = m_persistance.getIngredientsSoft();
+                ArrayList listeIngrAlc = m_persistance.getIngredientsAlcool(NumCock);
+                for (int j = 0; j < listeIngrAlc.Count; j++)
+                {
+                    listeCIA.Add(listeIngrAlc[j]);
+                }
+
+                listeCI[i][0] = NomCock;
+                listeCI[i][1] = listeCIA;
+                listeCI[i][2] = listeCIS;
+
+            }
             return listeCI;
         }
 

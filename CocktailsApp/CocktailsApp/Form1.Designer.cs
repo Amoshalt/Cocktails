@@ -32,6 +32,7 @@
             this.cocktailsLB = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.listeDesCocktailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rechercheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,7 +47,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listeDesCocktailsToolStripMenuItem});
+            this.listeDesCocktailsToolStripMenuItem,
+            this.rechercheToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(454, 24);
@@ -59,6 +61,13 @@
             this.listeDesCocktailsToolStripMenuItem.Size = new System.Drawing.Size(115, 20);
             this.listeDesCocktailsToolStripMenuItem.Text = "Liste des Cocktails";
             this.listeDesCocktailsToolStripMenuItem.Click += new System.EventHandler(this.listeDesCocktailsToolStripMenuItem_Click);
+            // 
+            // rechercheToolStripMenuItem
+            // 
+            this.rechercheToolStripMenuItem.Name = "rechercheToolStripMenuItem";
+            this.rechercheToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
+            this.rechercheToolStripMenuItem.Text = "Recherche";
+            this.rechercheToolStripMenuItem.Click += new System.EventHandler(this.RechercheEvent);
             // 
             // Form1
             // 
@@ -82,5 +91,6 @@
         private System.Windows.Forms.Label cocktailsLB;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem listeDesCocktailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rechercheToolStripMenuItem;
     }
 }
