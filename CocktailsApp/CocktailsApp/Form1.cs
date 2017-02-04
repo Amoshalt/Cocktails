@@ -128,16 +128,24 @@ namespace CocktailsApp
             //S'il y avait déjà qqc d'afficher, on l'efface
             Vider();
 
+            int w = 200,
+                h = 300,
+                m = 50;
             //On affiche les alcools
-            PanneauCB pAlcools = new PanneauCB(50, 50, 200, 300, "Alcools : ", m_recherche.NomAlcool(), m_recherche.ListeAlcools(), new EventHandler(CheckAlcool));
+            PanneauCB pAlcools = new PanneauCB((this.Width / 6) - (w / 2), m, w, h, "Alcools : ", m_recherche.NomAlcool(), m_recherche.ListeAlcools(), new EventHandler(CheckAlcool));
             pAlcools.Parent = this;
             m_composants.Add(pAlcools);
 
             //On affiche les softs
-            PanneauCB pSofts = new PanneauCB(300, 50, 200, 300, "Softs : ", m_recherche.NomSoft(), m_recherche.ListeSofts(), new EventHandler(CheckSoft));
+            PanneauCB pSofts = new PanneauCB((this.Width / 2) - (w / 2), m, w, h, "Softs : ", m_recherche.NomSoft(), m_recherche.ListeSofts(), new EventHandler(CheckSoft));
             //Panneau pSofts = new Panneau(300, 50, 200, 300, "Softs : ", m_recherche.NomSoft());
             pSofts.Parent = this;
             m_composants.Add(pSofts);
+
+            //On prepare le panneau d'affichage des cocktails resultats de la recherche
+            Panneau pCocktails = new Panneau((this.Width * 5 / 6) - (w / 2), m, w, h, "Cocktails : ", new string[0]);
+            pCocktails.Parent = this;
+            m_composants.Add(pCocktails);
 
 
             //Bouton de validation
@@ -163,26 +171,16 @@ namespace CocktailsApp
 
         protected void AffichageResultatsRecherche(ArrayList cocktails)
         {
-            //S'il y avait deja qqc on l'efface
-            Vider();
-            //Affichage des résultats
-            int taille = cocktails.Count;
-            //parametres d'affichage
-            int py = 50, ecart = 30;
-            Label lTitre = new Label();
-            m_composants.Add(lTitre);
-            lTitre.Text = "Cocktails disponibles :";
-            lTitre.Parent = this;
-            lTitre.Location = new System.Drawing.Point((this.Width - lTitre.Size.Width) / 2, py);
-            for(int i = 0; i < cocktails.Count; i++)
+            //S'il y avait deja un panneau de resultats, on le recupere
+            Panneau pCocktails = GetPanneau();
+            if (pCocktails != null)
             {
-                int y = py + ((i + 1) * ecart);
-                Label lCo = new Label();
-                lCo.Size = new System.Drawing.Size(200, lCo.Height);
-                m_composants.Add(lCo);
-                lCo.Text = cocktails[i].ToString();
-                lCo.Parent = this;
-                lCo.Location = new System.Drawing.Point((this.Width - lCo.Size.Width) / 2, y);
+                //Affichage des résultats
+                int taille = cocktails.Count;
+                string[] liste = new string[taille];
+                for (int i = 0; i < taille; i++)
+                    liste[i] = cocktails[i].ToString();
+                pCocktails.Donnees(liste);
             }
         }
 
@@ -198,6 +196,18 @@ namespace CocktailsApp
                 }
             }
             m_composants = new ArrayList();
+        }
+
+        protected Panneau GetPanneau()
+        {
+            for (int i = 0; i < m_composants.Count; i++)
+            {
+                if ((m_composants[i] is Panneau) && !(m_composants[i] is PanneauCB))
+                {
+                    return (Panneau)m_composants[i];
+                }
+            }
+            return null;
         }
 
     }

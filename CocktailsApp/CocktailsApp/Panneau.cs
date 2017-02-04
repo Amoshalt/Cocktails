@@ -70,16 +70,17 @@ namespace CocktailsApp
             Vider();
             m_lElements = new Label[liste.Length];
             int ecart = 30,
-                px = 0,
+                px = 1,
                 py = 5;
             for (int i = 0; i < liste.Length; i++)
             {
                 int ty = py + (i * ecart);
                 //Ajout du label avec le nom de l'element
                 m_lElements[i] = new Label();
+                m_lElements[i].Location = new Point(px, ty);
+                m_lElements[i].Size = new Size(m_sousPanel.Width - (1 + px), ecart - 2);
                 m_lElements[i].Parent = m_sousPanel;
                 m_lElements[i].Text = liste[i];
-                m_lElements[i].Location = new Point(px, ty);
             }
         }
 
