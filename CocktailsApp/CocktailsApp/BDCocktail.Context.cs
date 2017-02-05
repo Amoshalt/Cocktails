@@ -16,7 +16,7 @@ namespace CocktailsApp
     public partial class isi_projet2_tardymartial_remondvictorEntities : DbContext
     {
         public isi_projet2_tardymartial_remondvictorEntities()
-            : base("name=isi_projet2_tardymartial_remondvictorEntities1")
+            : base("name=isi_projet2_tardymartial_remondvictorEntities")
         {
         }
     

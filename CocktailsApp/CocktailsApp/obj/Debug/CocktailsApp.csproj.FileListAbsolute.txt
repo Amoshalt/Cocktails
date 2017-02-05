@@ -42,7 +42,6 @@ D:\Code\C#\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.csproj.Gen
 E:\martial\Documents\ISI\Projets\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\CocktailsApp.exe.config
 E:\martial\Documents\ISI\Projets\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.exe
 E:\martial\Documents\ISI\Projets\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.pdb
-E:\martial\Documents\ISI\Projets\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.csprojResolveAssemblyReference.cache
 E:\martial\Documents\ISI\Projets\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.Form1.resources
 E:\martial\Documents\ISI\Projets\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.csproj.GenerateResource.Cache
 E:\martial\Documents\ISI\Projets\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\CocktailsApp.exe
@@ -53,3 +52,4 @@ E:\martial\Documents\ISI\Projets\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\M
 E:\martial\Documents\ISI\Projets\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\MySql.Data.Entity.EF6.dll
 E:\martial\Documents\ISI\Projets\Cocktails\CocktailsApp\CocktailsApp\bin\Debug\EntityFramework.xml
 D:\Code\C#\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.csprojResolveAssemblyReference.cache
+E:\martial\Documents\ISI\Projets\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.csprojResolveAssemblyReference.cache
