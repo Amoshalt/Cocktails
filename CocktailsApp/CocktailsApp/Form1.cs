@@ -35,6 +35,7 @@ namespace CocktailsApp
             m_composants = new ArrayList();
             InitializeComponent();
             this.Size = new Size(800, 500);
+            m_composants.Add(pbCocktails);
         }
 
         private void quitterAccueil()
@@ -421,6 +422,6 @@ namespace CocktailsApp
             return null;
         }
 
-        
+      
     }
 }
