@@ -197,6 +197,143 @@ namespace CocktailsApp
 
         }
 
+        public Boolean getExistenceCocktail(String nomCocktail)
+        {
+            Boolean existence = new Boolean();
+            existence = true;
+            var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
+            var table = contexteBD.CreateObjectSet<cocktail>();
+            ArrayList lC = new ArrayList();
+
+            try
+            {
+                var requete = from d in table
+                              where d.NOM_COCKTAIL == nomCocktail
+                              select d;
+                var repC = ((ObjectQuery)requete).Execute(MergeOption.AppendOnly);
+                foreach(cocktail c in repC)
+                {
+                    lC.Add(c);
+                }
+
+                if (lC.Count  == 0)
+                {
+                    existence = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("E getExistenceCocktail : " + ex.GetBaseException().Message);
+            }
+
+            return existence;
+        }
+
+        public Boolean getExistenceSoft(String nomSoft)
+        {
+            Boolean existence = new Boolean();
+            existence = true;
+            var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
+            var table = contexteBD.CreateObjectSet<soft>();
+            ArrayList lS = new ArrayList();
+
+            try
+            {
+                var requete = from d in table
+                              where d.NOM_SOFT == nomSoft
+                              select d;
+                var repC = ((ObjectQuery)requete).Execute(MergeOption.AppendOnly);
+                foreach (cocktail c in repC)
+                {
+                    lS.Add(c);
+                }
+
+                if (lS.Count == 0)
+                {
+                    existence = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("E getExistenceCocktail : " + ex.GetBaseException().Message);
+            }
+            return existence;
+        }
+
+        public Boolean getExistenceAlcool(String nomAlcool)
+        {
+            Boolean existence = new Boolean();
+            existence = true;
+            var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
+            var table = contexteBD.CreateObjectSet<alcool>();
+            ArrayList lA = new ArrayList();
+
+            try
+            {
+                var requete = from d in table
+                              where d.NOM_ALCOOL == nomAlcool
+                              select d;
+                var repC = ((ObjectQuery)requete).Execute(MergeOption.AppendOnly);
+                foreach (cocktail c in repC)
+                {
+                    lA.Add(c);
+                }
+
+                if (lA.Count == 0)
+                {
+                    existence = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("E getExistenceCocktail : " + ex.GetBaseException().Message);
+            }
+            return existence;
+        }
+
+        public void CreationCocktail(cocktail c)
+        {
+            var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
+            var table = contexteBD.CreateObjectSet<cocktail>();
+            ArrayList lA = new ArrayList();
+
+            /*
+            // Create a new Order object.
+            cocktail co = new cocktail
+            {
+                this.NOM_COCKTAIL = c.NOM_COCKTAIL;
+                
+                OrderDate = DateTime.Now
+                // …
+            };
+
+            // Add the new object to the Orders collection.
+            db.Orders.InsertOnSubmit(ord);
+
+            // Submit the change to the database.
+            try
+            {
+                db.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                // Make some adjustments.
+                // ...
+                // Try again.
+                db.SubmitChanges();
+            }*/
+        }
+
+        public void CreationSoft(soft c)
+        {
+
+        }
+
+        public void CreationAlcool(alcool a)
+        {
+
+        }
 
         /* Fonction de recherche des cocktails disponibles a partir d'une liste de softs et une autre d'alcools
          * parametres :

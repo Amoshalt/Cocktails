@@ -33,6 +33,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.listeDesCocktailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rechercheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ajouterUnCocktailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +49,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.listeDesCocktailsToolStripMenuItem,
-            this.rechercheToolStripMenuItem});
+            this.rechercheToolStripMenuItem,
+            this.ajouterUnCocktailToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(454, 24);
@@ -68,6 +70,13 @@
             this.rechercheToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
             this.rechercheToolStripMenuItem.Text = "Recherche";
             this.rechercheToolStripMenuItem.Click += new System.EventHandler(this.RechercheEvent);
+            // 
+            // ajouterUnCocktailToolStripMenuItem
+            // 
+            this.ajouterUnCocktailToolStripMenuItem.Name = "ajouterUnCocktailToolStripMenuItem";
+            this.ajouterUnCocktailToolStripMenuItem.Size = new System.Drawing.Size(121, 20);
+            this.ajouterUnCocktailToolStripMenuItem.Text = "Ajouter un Cocktail";
+            this.ajouterUnCocktailToolStripMenuItem.Click += new System.EventHandler(this.ajouterUnCocktailToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -92,5 +101,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem listeDesCocktailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rechercheToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ajouterUnCocktailToolStripMenuItem;
     }
 }

@@ -50,6 +50,11 @@ namespace CocktailsApp
             AffichageRecherche();
         }
 
+        private void ajouterUnCocktailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AffichageAjouterCocktail();
+        }
+
         private void CheckSoft(Object sender, EventArgs e)
         {
             m_recherche.ModifSoft(((CheckBox)sender).TabIndex);
@@ -102,7 +107,10 @@ namespace CocktailsApp
 
         }
 
+        private void AffichageAjouterCocktail()
+        {
 
+        }
         private void AffichageRecherche()
         {
             //S'il y avait déjà qqc d'afficher, on l'efface
@@ -219,5 +227,6 @@ namespace CocktailsApp
             
         }
 
+        
     }
 }
