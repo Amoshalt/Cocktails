@@ -18,13 +18,13 @@ namespace CocktailsApp
         public Panneau()
         {
             Initialisation(10, 10, 100, 100, "Panneau");
-            Donnees(new string[0]);
+            Donnees(new string[0], null);
         }
 
-        public Panneau(int x, int y, int l, int h, string titre, string[] liste)
+        public Panneau(int x, int y, int l, int h, string titre, string[] liste, EventHandler e)
         {
             Initialisation(x, y, l, h, titre);
-            Donnees(liste);
+            Donnees(liste, e);
         }
 
         protected void Initialisation(int x, int y, int l, int h, string titre)
@@ -75,7 +75,7 @@ namespace CocktailsApp
             m_titre.Text = titre;
         }
 
-        public void Donnees(string[] liste)
+        public void Donnees(string[] liste, EventHandler e)
         {
             Vider();
             m_lElements = new Label[liste.Length];
@@ -91,8 +91,11 @@ namespace CocktailsApp
                 m_lElements[i].Size = new Size(m_sousPanel.Width - (1 + px), ecart - 2);
                 m_lElements[i].Parent = m_sousPanel;
                 m_lElements[i].Text = liste[i];
+                m_lElements[i].TabIndex = i;
                 m_lElements[i].MouseEnter += new EventHandler(Survol);
                 m_lElements[i].MouseLeave += new EventHandler(Sortie);
+                if(e != null)
+                    m_lElements[i].Click += e;
             }
         }
 

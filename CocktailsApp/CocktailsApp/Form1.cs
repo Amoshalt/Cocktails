@@ -10,7 +10,7 @@ namespace CocktailsApp
         protected ListeCocktails m_lCocktails;
         protected Recherche m_recherche;
         protected ArrayList m_composants;
-
+        protected ArrayList m_liste;
 
         public Form1()
         {
@@ -47,6 +47,7 @@ namespace CocktailsApp
             AffichageCocktails();
         }
 
+        //Lance la recherche d'un cocktail
         private void RechercheEvent(object sender, EventArgs e)
         {
             AffichageRecherche();
@@ -57,11 +58,13 @@ namespace CocktailsApp
             AffichageAjouterCocktail();
         }
 
+        //Modiifie la disponnibilité d'un soft via un event
         private void CheckSoft(Object sender, EventArgs e)
         {
             m_recherche.ModifSoft(((CheckBox)sender).TabIndex);
         }
 
+        //Modiifie la disponnibilité d'un alcool via un event
         private void CheckAlcool(Object sender, EventArgs e)
         {
             m_recherche.ModifAlcool(((CheckBox)sender).TabIndex);
@@ -76,6 +79,8 @@ namespace CocktailsApp
             Vider();
 
         }
+
+        //Decoche toutes les CheckBox
         private void RAZClick(Object sender, EventArgs e)
         {
             for(int i = 0; i < m_composants.Count; i++)
@@ -86,6 +91,17 @@ namespace CocktailsApp
                 }
             }
             m_recherche.Clean();
+        }
+
+        //Affiche la fenetre detaillant un cocktail
+        private void Detail(Object sender, EventArgs e)
+        {
+            int index = ((Label)sender).TabIndex;
+            if((m_liste != null) && (m_liste.Count > index))
+            {
+                Description d = new Description((cocktail)m_liste[index], m_recherche);
+                d.Show();
+            }
         }
 
         private void affichageListCocktails()
@@ -238,7 +254,7 @@ namespace CocktailsApp
             m_composants.Add(pSofts);
 
             //On prepare le panneau d'affichage des cocktails resultats de la recherche
-            Panneau pCocktails = new Panneau((this.Width * 5 / 6) - (w / 2), m, w, h, "Cocktails : ", new string[0]);
+            Panneau pCocktails = new Panneau((this.Width * 5 / 6) - (w / 2), m, w, h, "Cocktails : ", new string[0], null);
             pCocktails.Parent = this;
             m_composants.Add(pCocktails);
 
@@ -270,12 +286,14 @@ namespace CocktailsApp
             Panneau pCocktails = GetPanneau();
             if (pCocktails != null)
             {
+                //On garde la liste en memoire
+                m_liste = cocktails;
                 //Affichage des résultats
                 int taille = cocktails.Count;
                 string[] liste = new string[taille];
                 for (int i = 0; i < taille; i++)
-                    liste[i] = cocktails[i].ToString();
-                pCocktails.Donnees(liste);
+                    liste[i] = ((cocktail)cocktails[i]).ToString();
+                pCocktails.Donnees(liste, new EventHandler(Detail));
             }
         }
 

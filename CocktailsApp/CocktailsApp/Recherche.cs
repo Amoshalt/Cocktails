@@ -142,16 +142,17 @@ namespace CocktailsApp
             }
             return liste;
         }
-        /*
+
         //Retourne les instructions necessaires a la fabrication du cocktail passe en parametre
         public string[] Instructions(cocktail c)
         {
             ArrayList liste = m_persistance.getEtapes(c.NUM_COCKTAIL);
             string[] tab = new string[liste.Count];
-            /*
+
             for (int i = 0; i < liste.Count; i++)
-                tab[i] = ((etaperecette)liste[i]).;
-                */
-        //}
+                tab[i] = ((etaperecette)liste[i]).ETAPE;
+
+            return tab;
+        }
     }
 }

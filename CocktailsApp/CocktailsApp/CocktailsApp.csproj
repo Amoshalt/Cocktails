@@ -89,6 +89,9 @@
     <Compile Include="cocktail.cs">
       <DependentUpon>BDCocktail.tt</DependentUpon>
     </Compile>
+    <Compile Include="Description.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="etaperecette.cs">
       <DependentUpon>BDCocktail.tt</DependentUpon>
     </Compile>
