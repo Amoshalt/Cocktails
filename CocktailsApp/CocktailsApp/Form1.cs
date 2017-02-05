@@ -31,6 +31,10 @@ namespace CocktailsApp
             this.Size = new Size(800, 500);
         }
 
+        private void quitterAccueil()
+        {
+            label1.Visible = false;
+        }
         //Gestion des events
 
         private void fermer1_Click(object sender, EventArgs e)
@@ -44,17 +48,20 @@ namespace CocktailsApp
 
         private void listeDesCocktailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            quitterAccueil();
             AffichageCocktails();
         }
 
         //Lance la recherche d'un cocktail
         private void RechercheEvent(object sender, EventArgs e)
         {
+            quitterAccueil();
             AffichageRecherche();
         }
 
         private void ajouterUnCocktailToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            quitterAccueil();
             AffichageAjouterCocktail();
         }
 
@@ -204,14 +211,14 @@ namespace CocktailsApp
 
 
             //On affiche les alcools
-            PanneauCBAjout pAlcools = new PanneauCBAjout((this.Width / 6) - (w / 2), m, w, h, "Alcools : ", m_recherche.NomAlcool(), m_recherche.ListeAlcools(), new EventHandler(CheckAlcool));
+            PanneauCBAjout pAlcools = new PanneauCBAjout((this.Width / 6) - (w / 2), m, w+100, h, "Alcools : ", m_recherche.NomAlcool(), m_recherche.ListeAlcools(), new EventHandler(CheckAlcool));
             pAlcools.Parent = this;
             m_composants.Add(pAlcools);
 
            
 
             //On affiche les softs
-            PanneauCBAjout pSofts = new PanneauCBAjout((this.Width / 2) - (w / 2), m, w, h, "Softs : ", m_recherche.NomSoft(), m_recherche.ListeSofts(), new EventHandler(CheckSoft));
+            PanneauCBAjout pSofts = new PanneauCBAjout((this.Width / 2) - (w / 4), m, w+100, h, "Softs : ", m_recherche.NomSoft(), m_recherche.ListeSofts(), new EventHandler(CheckSoft));
             //Panneau pSofts = new Panneau(300, 50, 200, 300, "Softs : ", m_recherche.NomSoft());
             pSofts.Parent = this;
             m_composants.Add(pSofts);
@@ -226,13 +233,14 @@ namespace CocktailsApp
             
             
             
-            //TextBox nouveau alcool
-
-            //TextBox nouveau soft
-
-            //On lance l'ajout au click
+           //On lance l'ajout au click
             bVal.Click += new EventHandler(AjouterClick);
 
+
+        }
+
+        private void AjouterClick(object sender, EventHandler e)
+        {
 
         }
 
