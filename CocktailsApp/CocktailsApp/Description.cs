@@ -30,6 +30,7 @@ namespace CocktailsApp
             int labH = 30;
             m_lNom = new Label();
             m_lNom.Parent = this;
+            m_lNom.Font = new Font("Times New Roman", 20, FontStyle.Regular);
             m_lNom.AutoSize = true;
             m_lNom.Text = c.NOM_COCKTAIL;
             m_lNom.Size = new Size(l - 2, labH);

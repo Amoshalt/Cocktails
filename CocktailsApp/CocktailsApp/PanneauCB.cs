@@ -30,7 +30,7 @@ namespace CocktailsApp
             int ecart = 30,
                 tab = 15,
                 px = 1,
-                py = 5;
+                py = 15;
             for (int i = 0; i < liste.Length; i++)
             {
                 int ty = py + (i * ecart);
@@ -38,15 +38,16 @@ namespace CocktailsApp
                 m_lElements[i] = new Label();
                 m_lElements[i].Size = new Size(m_sousPanel.Width - (1 + px + tab), ecart - 2);
                 m_lElements[i].Parent = m_sousPanel;
+                m_lElements[i].TextAlign = ContentAlignment.MiddleLeft;
                 m_lElements[i].Text = liste[i];
-                m_lElements[i].Location = new Point(px + tab, ty);
+                m_lElements[i].Location = new Point(px + tab, ty - (m_lElements[i].Height / 2));
                 //Ajout de la Checkbox pour (de)selectionner l'element
                 m_cElements[i] = new CheckBox();
                 //m_composants.Add(cAl);
                 m_cElements[i].Parent = m_sousPanel;
                 //On permet enregistre l'index pour retrouver a quel element la checkbox correspond par la suite
                 m_cElements[i].TabIndex = i;
-                m_cElements[i].Location = new Point(px, ty - 5);
+                m_cElements[i].Location = new Point(px, ty - (m_cElements[i].Height / 2));
                 //Si l'utilisateur avait declare cet element comme disponnible, on coche la case
                 if ((i < test.Length) && test[i])
                     m_cElements[i].Checked = true;

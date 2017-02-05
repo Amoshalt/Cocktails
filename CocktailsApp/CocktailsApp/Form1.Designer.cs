@@ -33,7 +33,11 @@
             this.listeDesCocktailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rechercheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterUnCocktailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+<<<<<<< HEAD
             this.label1 = new System.Windows.Forms.Label();
+=======
+            this.ajouterUnSoftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+>>>>>>> 711fc6e454506783bc01e743c5cb0bdf5e1ee589
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,7 +46,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.listeDesCocktailsToolStripMenuItem,
             this.rechercheToolStripMenuItem,
-            this.ajouterUnCocktailToolStripMenuItem});
+            this.ajouterUnCocktailToolStripMenuItem,
+            this.ajouterUnSoftToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(454, 24);
@@ -70,6 +75,7 @@
             this.ajouterUnCocktailToolStripMenuItem.Text = "Ajouter un Cocktail";
             this.ajouterUnCocktailToolStripMenuItem.Click += new System.EventHandler(this.ajouterUnCocktailToolStripMenuItem_Click);
             // 
+<<<<<<< HEAD
             // label1
             // 
             this.label1.AutoSize = true;
@@ -79,6 +85,14 @@
             this.label1.Size = new System.Drawing.Size(261, 44);
             this.label1.TabIndex = 7;
             this.label1.Text = "Bienvenue";
+=======
+            // ajouterUnSoftToolStripMenuItem
+            // 
+            this.ajouterUnSoftToolStripMenuItem.Name = "ajouterUnSoftToolStripMenuItem";
+            this.ajouterUnSoftToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
+            this.ajouterUnSoftToolStripMenuItem.Text = "Ajouter un Soft";
+            this.ajouterUnSoftToolStripMenuItem.Click += new System.EventHandler(this.AddSoft);
+>>>>>>> 711fc6e454506783bc01e743c5cb0bdf5e1ee589
             // 
             // Form1
             // 
@@ -103,6 +117,10 @@
         private System.Windows.Forms.ToolStripMenuItem listeDesCocktailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rechercheToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajouterUnCocktailToolStripMenuItem;
+<<<<<<< HEAD
         private System.Windows.Forms.Label label1;
+=======
+        private System.Windows.Forms.ToolStripMenuItem ajouterUnSoftToolStripMenuItem;
+>>>>>>> 711fc6e454506783bc01e743c5cb0bdf5e1ee589
     }
 }

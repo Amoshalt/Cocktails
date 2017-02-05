@@ -54,4 +54,8 @@ D:\Code\C#\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.Form1.reso
 D:\Code\C#\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.csproj.GenerateResource.Cache
 D:\Code\C#\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.exe
 D:\Code\C#\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.pdb
+<<<<<<< HEAD
 E:\martial\Documents\ISI\Projets\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.csprojResolveAssemblyReference.cache
+=======
+D:\Code\C#\Cocktails\CocktailsApp\CocktailsApp\obj\Debug\CocktailsApp.csprojResolveAssemblyReference.cache
+>>>>>>> 711fc6e454506783bc01e743c5cb0bdf5e1ee589
