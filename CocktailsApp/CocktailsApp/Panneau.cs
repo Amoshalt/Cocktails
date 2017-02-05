@@ -90,6 +90,7 @@ namespace CocktailsApp
                 m_lElements[i].Location = new Point(px, ty);
                 m_lElements[i].Size = new Size(m_sousPanel.Width - (1 + px), ecart - 2);
                 m_lElements[i].Parent = m_sousPanel;
+                m_lElements[i].TextAlign = ContentAlignment.MiddleLeft;
                 m_lElements[i].Text = liste[i];
                 m_lElements[i].TabIndex = i;
                 m_lElements[i].MouseEnter += new EventHandler(Survol);

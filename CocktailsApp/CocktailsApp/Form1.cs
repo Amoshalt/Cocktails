@@ -306,6 +306,18 @@ namespace CocktailsApp
             }
         }
 
+        //Affiche la page d'ajout d'un soft
+        protected void AjoutSoft()
+        {
+            //On vide la fenetre si jamais il y avait deja qqc d'affiche
+            Vider();
+
+            //On affiche les champs de saisie
+            Label lTitre = new Label();
+            lTitre.TextAlign = ContentAlignment.MiddleCenter;
+            lTitre.Parent = this;
+        }
+
         //Fonction de nettoyage de l'écran
         protected void Vider()
         {
