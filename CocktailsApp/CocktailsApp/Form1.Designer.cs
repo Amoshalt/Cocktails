@@ -33,6 +33,7 @@
             this.listeDesCocktailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rechercheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterUnCocktailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ajouterUnSoftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,7 +42,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.listeDesCocktailsToolStripMenuItem,
             this.rechercheToolStripMenuItem,
-            this.ajouterUnCocktailToolStripMenuItem});
+            this.ajouterUnCocktailToolStripMenuItem,
+            this.ajouterUnSoftToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(454, 24);
@@ -69,6 +71,13 @@
             this.ajouterUnCocktailToolStripMenuItem.Text = "Ajouter un Cocktail";
             this.ajouterUnCocktailToolStripMenuItem.Click += new System.EventHandler(this.ajouterUnCocktailToolStripMenuItem_Click);
             // 
+            // ajouterUnSoftToolStripMenuItem
+            // 
+            this.ajouterUnSoftToolStripMenuItem.Name = "ajouterUnSoftToolStripMenuItem";
+            this.ajouterUnSoftToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
+            this.ajouterUnSoftToolStripMenuItem.Text = "Ajouter un Soft";
+            this.ajouterUnSoftToolStripMenuItem.Click += new System.EventHandler(this.AddSoft);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -91,5 +100,6 @@
         private System.Windows.Forms.ToolStripMenuItem listeDesCocktailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rechercheToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajouterUnCocktailToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ajouterUnSoftToolStripMenuItem;
     }
 }

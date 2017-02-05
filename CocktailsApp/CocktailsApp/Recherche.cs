@@ -154,5 +154,10 @@ namespace CocktailsApp
 
             return tab;
         }
+
+        public void Add(soft s)
+        {
+            m_persistance.CreationSoft(s);
+        }
     }
 }

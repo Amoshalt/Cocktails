@@ -104,6 +104,14 @@ namespace CocktailsApp
             }
         }
 
+        //Ajout d'un soft
+        private void AddSoft(Object sender, EventArgs e)
+        {
+            soft s = new soft();
+            s.NOM_SOFT = "Test2";
+            m_recherche.Add(s);
+        }
+
         private void affichageListCocktails()
         {
             /*
@@ -132,7 +140,7 @@ namespace CocktailsApp
                 m_composants.Add(new Label());
                 Label NomCocktailsLB = (Label)m_composants[m_composants.Count - 1];
                 NomCocktailsLB.Parent = this;
-                NomCocktailsLB.Location = new System.Drawing.Point(apx, apy*(i+1));
+                NomCocktailsLB.Location = new Point(apx, apy*(i+1));
                 NomCocktailsLB.Text = "";
                 NomCocktailsLB.Visible = true;
 
@@ -147,7 +155,7 @@ namespace CocktailsApp
                 m_composants.Add(new Label());
                 Label AlcoolsLB = (Label)m_composants[m_composants.Count - 1];
                 AlcoolsLB.Parent = this;
-                AlcoolsLB.Location = new System.Drawing.Point(NomCocktailsLB.Location.X + ecart* 5, apy * (i + 1));
+                AlcoolsLB.Location = new Point(NomCocktailsLB.Location.X + ecart* 5, apy * (i + 1));
                 AlcoolsLB.Text = "";
                 AlcoolsLB.Visible = true;
                 
@@ -161,7 +169,7 @@ namespace CocktailsApp
                 m_composants.Add(new Label());
                 Label SoftsLB = (Label)m_composants[m_composants.Count - 1];
                 SoftsLB.Parent = this;
-                SoftsLB.Location = new System.Drawing.Point(AlcoolsLB.Location.X + ecart * 10, apy * (i + 1));
+                SoftsLB.Location = new Point(AlcoolsLB.Location.X + ecart * 10, apy * (i + 1));
                 SoftsLB.Text = "";
                 SoftsLB.Visible = true;
                 
@@ -264,8 +272,8 @@ namespace CocktailsApp
             m_composants.Add(bVal);
             bVal.Parent = this;
             bVal.Text = "Lancer la recherche";
-            bVal.Size = new System.Drawing.Size(130, 23);
-            bVal.Location = new System.Drawing.Point((this.Width / 3) - (bVal.Size.Width / 2), this.Height - 100);
+            bVal.Size = new Size(130, 23);
+            bVal.Location = new Point((this.Width / 3) - (bVal.Size.Width / 2), this.Height - 100);
             //On lance la recherche au click
             bVal.Click += new EventHandler(RechercheClick);
 
@@ -274,8 +282,8 @@ namespace CocktailsApp
             m_composants.Add(bRAZ);
             bRAZ.Parent = this;
             bRAZ.Text = "Tout Vider";
-            bRAZ.Size = new System.Drawing.Size(80, 23);
-            bRAZ.Location = new System.Drawing.Point((this.Width * 2 / 3) - (bVal.Size.Width / 2), this.Height - 100);
+            bRAZ.Size = new Size(80, 23);
+            bRAZ.Location = new Point((this.Width * 2 / 3) - (bVal.Size.Width / 2), this.Height - 100);
             //On decoche toutes les cases au click
             bRAZ.Click += new EventHandler(RAZClick);
         }

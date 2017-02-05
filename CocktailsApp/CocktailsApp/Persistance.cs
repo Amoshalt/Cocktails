@@ -330,9 +330,10 @@ namespace CocktailsApp
             }*/
         }
 
-        public void CreationSoft(soft c)
+        public void CreationSoft(soft s)
         {
-
+            connexionBD.soft.Add(s);
+            connexionBD.SaveChanges();
         }
 
         public void CreationAlcool(alcool a)
