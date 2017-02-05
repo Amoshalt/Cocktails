@@ -7,7 +7,7 @@ use ISI_Projet2_TARDYMartial_REMONDVictor;
 CREATE TABLE Cocktail (
   NOM_COCKTAIL char(30),
   NUM_COCKTAIL int(11) UNIQUE AUTO_INCREMENT,
-  IMG char(100),
+  IMG varchar(100),
   TAILLE int(11) NOT NULL,
   CONSTRAINT pkCo
     PRIMARY KEY (NOM_COCKTAIL)
@@ -117,10 +117,22 @@ INSERT INTO IngredientAlcool (NUM_COCKTAIL, NUM_ALCOOL, QUANTITE) VALUES
 CREATE TABLE EtapeRecette (
   NUM_COCKTAIL int(11),
   NUM_ETAPE int(11),
-  QUANTITE int(11) NOT NULL,
+  ETAPE varchar(100),
   CONSTRAINT pkEtRe 
     PRIMARY KEY (NUM_COCKTAIL, NUM_ETAPE),
   CONSTRAINT fkEtRe
     FOREIGN KEY (NUM_COCKTAIL)
     REFERENCES Cocktail(NUM_COCKTAIL)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO EtapeRecette (NUM_COCKTAIL, NUM_ETAPE, ETAPE) VALUES
+(1, 1, "Verser directement la vodka et le Get dans un shooter."),
+(2, 1, "Le melange se fait directement dans le verre, ajouter des glacons."),
+(3, 1, "Melanger la grenadine, le jus d'orange et la vodka. Ajouter des glacons."),
+(4, 1, "Verser le RedBull dans un grand verre."),
+(4, 2, "Remplir un shooter de Jagermeister."),
+(4, 3, "Laiser tomber le shooter dans le verre de RedBull."),
+(5, 1, "Placer des feuilles de menthe dans le verre."),
+(5, 2, "Ajouter le sucre et le jus de citron."),
+(5, 3, "Ahouter le rhum, remplir le verre a moitie de glacons et completer avec de la limonade."),
+(5, 4, "Utiliser de preference du jus de citron vert frais.");
