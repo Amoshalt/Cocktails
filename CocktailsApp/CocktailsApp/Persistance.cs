@@ -15,12 +15,14 @@ namespace CocktailsApp
 
         public Persistance()
         {
-            Initialisation();
+            connexionBD = new isi_projet2_tardymartial_remondvictorEntities();
         }
 
-        protected void Initialisation()
+        public delegate void ChangementDB(object sender, EventArgs e);
+
+        protected void Reinit()
         {
-            connexionBD = new isi_projet2_tardymartial_remondvictorEntities();
+            //Emission ev
         }
 
         //Retourne la liste des cocktails
@@ -337,18 +339,26 @@ namespace CocktailsApp
             {
                 connexionBD.soft.Add(s);
                 connexionBD.SaveChanges();
-                Initialisation();
+                Reinit();
             }
             catch(Exception e)
             {
                 Console.WriteLine("Erreur Ajout Soft : " + e.GetBaseException().Message);
             }
-
         }
 
         public void CreationAlcool(alcool a)
         {
-
+            try
+            {
+                connexionBD.alcool.Add(a);
+                connexionBD.SaveChanges();
+                Reinit();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erreur Ajout Soft : " + e.GetBaseException().Message);
+            }
         }
 
         /* Fonction de recherche des cocktails disponibles a partir d'une liste de softs et une autre d'alcools

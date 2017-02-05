@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AjoutAlcool.cs" />
     <Compile Include="AjouterCocktail.cs" />
     <Compile Include="AjoutSoft.cs" />
     <Compile Include="alcool.cs">

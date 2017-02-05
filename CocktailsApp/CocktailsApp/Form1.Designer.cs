@@ -35,6 +35,7 @@
             this.ajouterUnCocktailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterUnSoftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
+            this.ajouterUnAlcoolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,7 +45,8 @@
             this.listeDesCocktailsToolStripMenuItem,
             this.rechercheToolStripMenuItem,
             this.ajouterUnCocktailToolStripMenuItem,
-            this.ajouterUnSoftToolStripMenuItem});
+            this.ajouterUnSoftToolStripMenuItem,
+            this.ajouterUnAlcoolToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(750, 24);
@@ -89,6 +91,13 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "Bienvenue";
             // 
+            // ajouterUnAlcoolToolStripMenuItem
+            // 
+            this.ajouterUnAlcoolToolStripMenuItem.Name = "ajouterUnAlcoolToolStripMenuItem";
+            this.ajouterUnAlcoolToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
+            this.ajouterUnAlcoolToolStripMenuItem.Text = "Ajouter un Alcool";
+            this.ajouterUnAlcoolToolStripMenuItem.Click += new System.EventHandler(this.AddAlcool);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -114,5 +123,6 @@
         private System.Windows.Forms.ToolStripMenuItem ajouterUnCocktailToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem ajouterUnSoftToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ajouterUnAlcoolToolStripMenuItem;
     }
 }

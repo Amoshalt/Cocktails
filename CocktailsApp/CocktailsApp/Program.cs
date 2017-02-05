@@ -21,9 +21,9 @@ namespace CocktailsApp
             Recherche recherche = new Recherche(persistance);
             ListeCocktails listeCocktails = new ListeCocktails(persistance);
             AjouterCocktail ajCock = new AjouterCocktail(persistance);
-
+            AjoutAlcool ajtAlcool = new AjoutAlcool(persistance);
             AjoutSoft ajtSoft = new AjoutSoft(persistance);
-            Form1 vue = new Form1(recherche, listeCocktails, ajCock, ajtSoft);
+            Form1 vue = new Form1(recherche, listeCocktails, ajCock, ajtSoft, ajtAlcool);
 
             Application.Run(vue);
         }

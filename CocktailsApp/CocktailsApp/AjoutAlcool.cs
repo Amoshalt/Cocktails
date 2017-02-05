@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace CocktailsApp
 {
-    public class AjoutSoft
+    public class AjoutAlcool
     {
         protected Persistance m_persistance;
-        protected soft m_soft;
+        protected alcool m_alcool;
 
-        public AjoutSoft()
+        public AjoutAlcool()
         {
             Initialiser(new Persistance());
         }
 
-        public AjoutSoft(Persistance p)
+        public AjoutAlcool(Persistance p)
         {
             Initialiser(p);
         }
@@ -24,20 +24,26 @@ namespace CocktailsApp
         protected void Initialiser(Persistance p)
         {
             m_persistance = p;
-            m_soft = new soft();
+            m_alcool = new alcool();
         }
 
         public void Nom(string n)
         {
             if(n != "")
-                m_soft.NOM_SOFT = n;
+                m_alcool.NOM_ALCOOL = n;
+        }
+
+        public void Degre(int d)
+        {
+            if(d > 0)
+                m_alcool.DEGRE = d;
         }
 
         public bool Valider()
         {
-            if (m_persistance.getExistenceSoft(m_soft.NOM_SOFT))
+            if (m_persistance.getExistenceAlcool(m_alcool.NOM_ALCOOL))
                 return false;
-            m_persistance.CreationSoft(m_soft);
+            m_persistance.CreationAlcool(m_alcool);
             return true;
         }
     }

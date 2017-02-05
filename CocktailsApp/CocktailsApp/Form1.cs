@@ -10,6 +10,7 @@ namespace CocktailsApp
         protected ListeCocktails m_lCocktails;
         protected Recherche m_recherche;
         protected AjoutSoft m_ajoutSoft;
+        protected AjoutAlcool m_ajoutAlcool;
         protected ArrayList m_composants;
         protected ArrayList m_liste;
         protected int prev = 0;
@@ -18,23 +19,25 @@ namespace CocktailsApp
 
         public Form1()
         {
-            Initialiser(new Recherche(), new ListeCocktails(), new AjouterCocktail(), new AjoutSoft());
+            Initialiser(new Recherche(), new ListeCocktails(), new AjouterCocktail(), new AjoutSoft(), new AjoutAlcool());
         }
 
-        public Form1(Recherche r, ListeCocktails lc, AjouterCocktail ac, AjoutSoft ajs)
+        public Form1(Recherche r, ListeCocktails lc, AjouterCocktail ac, AjoutSoft ajs, AjoutAlcool aja)
         {
-            Initialiser(r,lc,ac, ajs);
+            Initialiser(r,lc,ac, ajs, aja);
         }
 
-        protected void Initialiser(Recherche r, ListeCocktails lc, AjouterCocktail ac, AjoutSoft ajs)
+        protected void Initialiser(Recherche r, ListeCocktails lc, AjouterCocktail ac, AjoutSoft ajs, AjoutAlcool aja)
         {
             m_recherche = r;
             m_lCocktails = lc;
             m_aCocktail = ac;
             m_ajoutSoft = ajs;
+            m_ajoutAlcool = aja;
             m_composants = new ArrayList();
             InitializeComponent();
             this.Size = new Size(800, 500);
+            m_composants.Add(label1);
         }
 
         private void quitterAccueil()
@@ -121,8 +124,7 @@ namespace CocktailsApp
         //Page d'ajout d'un soft
         private void AddSoft(Object sender, EventArgs e)
         {
-            quitterAccueil();
-            AjoutSoft();
+            AffAjoutSoft();
         }
 
         //Modification du nom du soft
@@ -137,6 +139,31 @@ namespace CocktailsApp
             if (m_ajoutSoft.Valider())
                 MessageBox.Show("Le soft a bien ete ajoute.");
             else MessageBox.Show("Ce soft existe deja.");
+        }
+
+        //Page d'ajout d'un soft
+        private void AddAlcool(Object sender, EventArgs e)
+        {
+            AffAjoutAlcool();
+        }
+
+        //Modification du nom du soft
+        private void ModAddAlc(Object sender, EventArgs e)
+        {
+            m_ajoutAlcool.Nom(((TextBox)sender).Text);
+        }
+
+        private void ModDegAlcool(Object sender, EventArgs e)
+        {
+            m_ajoutAlcool.Degre(Int32.Parse(((TextBox)sender).Text));
+        }
+
+        //Ajout du cocktail
+        private void ValAjoutAlcool(Object s, EventArgs e)
+        {
+            if (m_ajoutAlcool.Valider())
+                MessageBox.Show("L'alcool a bien ete ajoute.");
+            else MessageBox.Show("Cet alcool existe deja.");
         }
 
         private void affichageListCocktails()
@@ -260,8 +287,8 @@ namespace CocktailsApp
             m_composants.Add(bVal);
             bVal.Parent = this;
             bVal.Text = "Ajouter";
-            bVal.Size = new System.Drawing.Size(130, 23);
-            bVal.Location = new System.Drawing.Point((this.Width / 3) - (bVal.Size.Width / 2), this.Height - 100);
+            bVal.Size = new Size(130, 23);
+            bVal.Location = new Point((this.Width / 3) - (bVal.Size.Width / 2), this.Height - 100);
             
             
             
@@ -345,7 +372,7 @@ namespace CocktailsApp
         }
 
         //Affiche la page d'ajout d'un soft
-        protected void AjoutSoft()
+        protected void AffAjoutSoft()
         {
             //On vide la fenetre si jamais il y avait deja qqc d'affiche
             Vider();
@@ -392,6 +419,75 @@ namespace CocktailsApp
             bVal.Text = "Ajouter";
             bVal.Size = new Size(lB, hB);
             bVal.Location = new Point((tNom.Location.X + tNom.Width - lB) / 2, tNom.Location.Y + ecartY);
+            bVal.Click += new EventHandler(ValAjoutSoft);
+        }
+
+        //Affiche la page d'ajout d'un alcool
+        protected void AffAjoutAlcool()
+        {
+            //On vide la fenetre si jamais il y avait deja qqc d'affiche
+            Vider();
+
+            //Titre
+            int hT = 30,
+                py = 20;
+            Label lTitre = new Label();
+            m_composants.Add(lTitre);
+            lTitre.TextAlign = ContentAlignment.MiddleCenter;
+            lTitre.Parent = this;
+            lTitre.Text = "Ajout d'un soft";
+            lTitre.Size = new Size(this.Width - 2, hT);
+            lTitre.Location = new Point(1, py);
+
+            //Nom du alcool
+            int hN = 30,
+                ecartX = 5,
+                ecartY = 20,
+                tabulation = 20;
+            Label lNom = new Label();
+            m_composants.Add(lNom);
+            lNom.TextAlign = ContentAlignment.BottomLeft;
+            lNom.Parent = this;
+            lNom.Text = "Nom de l'alcool : ";
+            lNom.AutoSize = true;
+            lNom.Size = new Size(lNom.Width, hN);
+            lNom.Location = new Point(tabulation, lTitre.Location.Y + lTitre.Height + ecartY);
+            //Entree
+            TextBox tNom = new TextBox();
+            m_composants.Add(tNom);
+            tNom.Parent = this;
+            tNom.MaxLength = 29;
+            tNom.Size = new Size(200, hN);
+            tNom.Location = new Point(lNom.Location.X + lNom.Width + ecartX, lNom.Location.Y);
+            tNom.TextChanged += new EventHandler(ModAddAlc);
+
+            //Degre du alcool
+            Label lDeg= new Label();
+            m_composants.Add(lDeg);
+            lDeg.TextAlign = ContentAlignment.BottomLeft;
+            lDeg.Parent = this;
+            lDeg.Text = "Degre de l'alcool : ";
+            lDeg.AutoSize = true;
+            lDeg.Size = new Size(lDeg.Width, hN);
+            lDeg.Location = new Point(lNom.Location.X, lNom.Location.Y + lNom.Height + ecartY);
+            //Entree
+            TextBox tDeg = new TextBox();
+            m_composants.Add(tDeg);
+            tDeg.Parent = this;
+            tDeg.MaxLength = 29;
+            tDeg.Size = new Size(200, hN);
+            tDeg.Location = new Point(lDeg.Location.X + lDeg.Width + ecartX, lDeg.Location.Y);
+            tDeg.TextChanged += new EventHandler(ModAddAlc);
+
+            //Bouton de validation
+            int lB = 80,
+                hB = 30;
+            Button bVal = new Button();
+            m_composants.Add(bVal);
+            bVal.Parent = this;
+            bVal.Text = "Ajouter";
+            bVal.Size = new Size(lB, hB);
+            bVal.Location = new Point((tDeg.Location.X + tDeg.Width - lB) / 2, tDeg.Location.Y + ecartY);
             bVal.Click += new EventHandler(ValAjoutSoft);
         }
 
