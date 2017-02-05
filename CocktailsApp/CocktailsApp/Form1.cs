@@ -156,15 +156,54 @@ namespace CocktailsApp
 
         private void ModDegAlcool(Object sender, EventArgs e)
         {
-            m_ajoutAlcool.Degre(Int32.Parse(((TextBox)sender).Text));
+            string str = ((TextBox)sender).Text;
+            if (str != "")
+            {
+                bool test = true;
+                bool change = false;
+                string bis = "";
+                //On verifie qu'il n'y a que des chiffres
+                for (int i = 0; (i < str.Length) && test; i++)
+                {
+                    if (test = (str[i] >= '0') && (str[i] <= '9') && (i < 3))
+                        bis += str[i];
+                }
+                change = !test;
+                //On enleve tous les 0 en debut de nombre
+                while((bis != "") && (bis[0] == '0'))
+                {
+                    string temp = "";
+                    for (int i = 1; i < bis.Length; i++)
+                        temp += bis[i];
+                    bis = temp;
+                    change = true;
+                }
+                if (test)
+                {
+                    int d = int.Parse(str);
+                    if(d > 100)
+                    {
+                        test = false;
+                        bis = "100";
+
+                    }
+                    else if(d > 0)
+                        m_ajoutAlcool.Degre(d);
+                }
+                //On affiche une valeur valide dans la TextBox
+                if(change)
+                {
+                    ((TextBox)sender).Text = bis;
+                    ((TextBox)sender).SelectionStart = bis.Length;
+                    ((TextBox)sender).SelectionLength = 0;
+                }
+            }
         }
 
         //Ajout du cocktail
         private void ValAjoutAlcool(Object s, EventArgs e)
         {
-            if (m_ajoutAlcool.Valider())
-                MessageBox.Show("L'alcool a bien ete ajoute.");
-            else MessageBox.Show("Cet alcool existe deja.");
+            MessageBox.Show(m_ajoutAlcool.Valider());
         }
 
         private void affichageListCocktails()
@@ -238,7 +277,6 @@ namespace CocktailsApp
                 }
                 SoftsLB.Font = new Font("Times New Roman", 10, FontStyle.Regular);
                 SoftsLB.AutoSize = true;
-
             }
             
         }
@@ -446,7 +484,8 @@ namespace CocktailsApp
             int hN = 30,
                 ecartX = 5,
                 ecartY = 30,
-                tabulation = 20;
+                tabulation = 20,
+                dx = 0;
             Label lNom = new Label();
             m_composants.Add(lNom);
             lNom.TextAlign = ContentAlignment.BottomLeft;
@@ -461,7 +500,7 @@ namespace CocktailsApp
             tNom.Parent = this;
             tNom.MaxLength = 29;
             tNom.Size = new Size(200, hN);
-            tNom.Location = new Point(lNom.Location.X + lNom.Width + ecartX, lNom.Location.Y);
+            dx = lNom.Location.X + lNom.Width + ecartX;
             tNom.TextChanged += new EventHandler(ModAddAlc);
 
             //Degre du alcool
@@ -479,8 +518,10 @@ namespace CocktailsApp
             tDeg.Parent = this;
             tDeg.MaxLength = 29;
             tDeg.Size = new Size(200, hN);
-            tDeg.Location = new Point(lDeg.Location.X + lDeg.Width + ecartX, lDeg.Location.Y);
-            tDeg.TextChanged += new EventHandler(ModAddAlc);
+            dx = Math.Max(dx, lDeg.Location.X + lDeg.Width + ecartX);
+            tNom.Location = new Point(dx, lNom.Location.Y);
+            tDeg.Location = new Point(dx, lDeg.Location.Y);
+            tDeg.TextChanged += new EventHandler(ModDegAlcool);
 
             //Bouton de validation
             int lB = 80,
@@ -491,7 +532,7 @@ namespace CocktailsApp
             bVal.Text = "Ajouter";
             bVal.Size = new Size(lB, hB);
             bVal.Location = new Point((tDeg.Location.X + tDeg.Width - lB) / 2, tDeg.Location.Y + ecartY);
-            bVal.Click += new EventHandler(ValAjoutSoft);
+            bVal.Click += new EventHandler(ValAjoutAlcool);
         }
 
         //Fonction de nettoyage de l'écran

@@ -35,16 +35,18 @@ namespace CocktailsApp
 
         public void Degre(int d)
         {
-            if(d > 0)
+            if ((d > 0) && (d <= 100))
                 m_alcool.DEGRE = d;
         }
 
-        public bool Valider()
+        public string Valider()
         {
+            if (m_alcool.DEGRE <= 0)
+                return "Vous ajoutez un alcool, veuillez renseigner un degre superieur a 0";
             if (m_persistance.getExistenceAlcool(m_alcool.NOM_ALCOOL))
-                return false;
+                return "Cet alcool existe deja.";
             m_persistance.CreationAlcool(m_alcool);
-            return true;
+            return "Alcool ajoute avec succes";
         }
     }
 }
