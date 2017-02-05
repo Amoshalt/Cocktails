@@ -92,7 +92,6 @@ namespace CocktailsApp
         private void AjouterClick(Object sender, EventArgs e)
         {
             m_aCocktail.AddCocktail(m_recherche.Valider());
-
         }
 
         //Decoche toutes les CheckBox
@@ -232,15 +231,15 @@ namespace CocktailsApp
             m_composants.Add(new Label());
             Label lbCocktail = (Label)m_composants[m_composants.Count - 1];
             lbCocktail.Parent = this;
-            lbCocktail.Location = new System.Drawing.Point((this.Width / 6) - (w / 2),50);
+            lbCocktail.Location = new Point((this.Width / 6) - (w / 2),50);
             lbCocktail.Text = "Nom Cocktail";
             lbCocktail.Visible = true;
             
             TextBox tbCocktail = new TextBox();
             m_composants.Add(tbCocktail);
             tbCocktail.Parent = this;
-            tbCocktail.Size = new System.Drawing.Size(130, 23);
-            tbCocktail.Location = new System.Drawing.Point((this.Width / 6), 50);
+            tbCocktail.Size = new Size(130, 23);
+            tbCocktail.Location = new Point((this.Width / 6), 50);
 
 
             //On affiche les alcools
@@ -267,12 +266,12 @@ namespace CocktailsApp
             
             
            //On lance l'ajout au click
-            bVal.Click += new EventHandler(AjouterClick);
+            bVal.Click += new EventHandler(AjouterCocktailClick);
 
 
         }
 
-        private void AjouterClick(object sender, EventHandler e)
+        private void AjouterCocktailClick(Object sender, EventArgs e)
         {
             
             m_aCocktail.AddCocktail(new ArrayList() );

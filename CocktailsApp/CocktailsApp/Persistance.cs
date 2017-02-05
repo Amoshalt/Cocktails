@@ -15,6 +15,11 @@ namespace CocktailsApp
 
         public Persistance()
         {
+            Initialisation();
+        }
+
+        protected void Initialisation()
+        {
             connexionBD = new isi_projet2_tardymartial_remondvictorEntities();
         }
 
@@ -332,6 +337,7 @@ namespace CocktailsApp
             {
                 connexionBD.soft.Add(s);
                 connexionBD.SaveChanges();
+                Initialisation();
             }
             catch(Exception e)
             {
