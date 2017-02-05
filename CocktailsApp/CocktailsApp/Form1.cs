@@ -187,8 +187,6 @@ namespace CocktailsApp
             //On affiche les alcools
             //Parametres d'affichage
             int apx = 50, apy = 50, ecart = 30;
-            
-            
 
             for (int i = 0; i < cocktailsIngredients.Count; i++)
             {
@@ -204,35 +202,39 @@ namespace CocktailsApp
                 ArrayList cockSofts = ((ArrayList)cock[2]);
                 
                 NomCocktailsLB.Text = (String)cock[0] + ": ";
-                NomCocktailsLB.Font = new Font("Times New Roman",10, FontStyle.Underline);
+                NomCocktailsLB.Font = new Font("Times New Roman", 10, FontStyle.Underline);
                 NomCocktailsLB.AutoSize = true;
 
                 m_composants.Add(new Label());
                 Label AlcoolsLB = (Label)m_composants[m_composants.Count - 1];
                 AlcoolsLB.Parent = this;
                 AlcoolsLB.Location = new Point(NomCocktailsLB.Location.X + ecart* 5, apy * (i + 1));
-                AlcoolsLB.Text = "";
+                if (cockAlcools.Count > 0)
+                    AlcoolsLB.Text = ((alcool)cockAlcools[0]).NOM_ALCOOL;
+                else AlcoolsLB.Text = ((soft)cockSofts[0]).NOM_SOFT;
                 AlcoolsLB.Visible = true;
                 
-                for (int j = 0; j < cockAlcools.Count; j++)
-                {
-                    AlcoolsLB.Text = AlcoolsLB.Text + ((alcool)cockAlcools[j]).NOM_ALCOOL + ", ";
-                }
+                for (int j = 1; j < cockAlcools.Count; j++)
+                    AlcoolsLB.Text += ", " + ((alcool)cockAlcools[j]).NOM_ALCOOL;
                 AlcoolsLB.Font = new Font("Times New Roman", 10, FontStyle.Regular);
                 AlcoolsLB.AutoSize = true;
+                if (cockSofts.Count > 0)
+                    AlcoolsLB.Text += ",";
 
                 m_composants.Add(new Label());
                 Label SoftsLB = (Label)m_composants[m_composants.Count - 1];
                 SoftsLB.Parent = this;
-                SoftsLB.Location = new Point(AlcoolsLB.Location.X + ecart * 10, apy * (i + 1));
+                int x = ((Label)m_composants[m_composants.Count - 2]).Location.X + ((Label)m_composants[m_composants.Count - 2]).Width;
+                SoftsLB.Location = new Point(x, apy * (i + 1));
                 SoftsLB.Text = "";
                 SoftsLB.Visible = true;
                 
 
                 for (int j = 0; j < cockSofts.Count; j++)
                 {
-                    SoftsLB.Text = SoftsLB.Text + ((soft)cockSofts[j]).NOM_SOFT + ", ";
-                    
+                    SoftsLB.Text = SoftsLB.Text + ((soft)cockSofts[j]).NOM_SOFT;
+                    if ((j + 1) < cockSofts.Count)
+                        SoftsLB.Text += ", ";
                 }
                 SoftsLB.Font = new Font("Times New Roman", 10, FontStyle.Regular);
                 SoftsLB.AutoSize = true;
