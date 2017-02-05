@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace CocktailsApp
 {
@@ -27,6 +28,7 @@ namespace CocktailsApp
             m_lCocktails = lc;
             m_composants = new ArrayList();
             InitializeComponent();
+            this.Size = new Size(800, 500);
         }
 
         //Gestion des events
@@ -37,7 +39,7 @@ namespace CocktailsApp
         }
         private void Form1_Load(object sender, System.EventArgs e)
         {
-            cocktailsLB.Visible = false;
+            //cocktailsLB.Visible = false;
         }
 
         private void listeDesCocktailsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -69,6 +71,26 @@ namespace CocktailsApp
         {
             this.AffichageResultatsRecherche(m_recherche.Valider());
         }
+        
+        private void RAZClick(Object sender, EventArgs e)
+        {
+            for(int i = 0; i < m_composants.Count; i++)
+            {
+                if (m_composants[i] is PanneauCB)
+                {
+                    ((PanneauCB)m_composants[i]).Decocher();
+                }
+            }
+            m_recherche.Clean();
+        }
+
+        private void affichageListCocktails()
+        {
+            /*
+            cocktailsLB.Text = "";
+            cocktailsLB.Visible = true;
+            */
+        }
 
         private void AffichageCocktails()
         {
@@ -82,100 +104,89 @@ namespace CocktailsApp
             //On affiche les alcools
             //Parametres d'affichage
             int apx = 50, apy = 50, ecart = 30;
-            m_composants.Add(new Label());
-            Label cocktailsLB = (Label)m_composants[m_composants.Count - 1];
-            cocktailsLB.Parent = this;
-            cocktailsLB.Location = new System.Drawing.Point(apx, apy);
-            cocktailsLB.Text = "";
-            cocktailsLB.Visible = true;
+            
+            
 
-            for(int i = 0; i< cocktailsIngredients.Count; i++)
+            for (int i = 0; i < cocktailsIngredients.Count; i++)
             {
+                m_composants.Add(new Label());
+                Label NomCocktailsLB = (Label)m_composants[m_composants.Count - 1];
+                NomCocktailsLB.Parent = this;
+                NomCocktailsLB.Location = new System.Drawing.Point(apx, apy*(i+1));
+                NomCocktailsLB.Text = "";
+                NomCocktailsLB.Visible = true;
+
                 ArrayList cock = ((ArrayList)cocktailsIngredients[i]);
                 ArrayList cockAlcools = ((ArrayList)cock[1]);
                 ArrayList cockSofts = ((ArrayList)cock[2]);
+                
+                NomCocktailsLB.Text = (String)cock[0] + ": ";
+                NomCocktailsLB.Font = new Font("Times New Roman",10, FontStyle.Underline);
+                NomCocktailsLB.AutoSize = true;
 
-                cocktailsLB.Text = cocktailsLB.Text + (String)cock[0] + ": ";
-                for( int j = 0; j < cockAlcools.Count; j++)
+                m_composants.Add(new Label());
+                Label AlcoolsLB = (Label)m_composants[m_composants.Count - 1];
+                AlcoolsLB.Parent = this;
+                AlcoolsLB.Location = new System.Drawing.Point(NomCocktailsLB.Location.X + ecart* 5, apy * (i + 1));
+                AlcoolsLB.Text = "";
+                AlcoolsLB.Visible = true;
+                
+                for (int j = 0; j < cockAlcools.Count; j++)
                 {
-                    cocktailsLB.Text = cocktailsLB.Text + ((alcool)cockAlcools[j]).NOM_ALCOOL + " ";
-                    cocktailsLB.Width = cocktailsLB.Width + ecart;
+                    AlcoolsLB.Text = AlcoolsLB.Text + ((alcool)cockAlcools[j]).NOM_ALCOOL + ", ";
                 }
-                cocktailsLB.Text = cocktailsLB.Text + "\n";
-                cocktailsLB.Height = cocktailsLB.Height + ecart;
-            }
+                AlcoolsLB.Font = new Font("Times New Roman", 10, FontStyle.Regular);
+                AlcoolsLB.AutoSize = true;
 
+                m_composants.Add(new Label());
+                Label SoftsLB = (Label)m_composants[m_composants.Count - 1];
+                SoftsLB.Parent = this;
+                SoftsLB.Location = new System.Drawing.Point(AlcoolsLB.Location.X + ecart * 10, apy * (i + 1));
+                SoftsLB.Text = "";
+                SoftsLB.Visible = true;
+                
+
+                for (int j = 0; j < cockSofts.Count; j++)
+                {
+                    SoftsLB.Text = SoftsLB.Text + ((soft)cockSofts[j]).NOM_SOFT + ", ";
+                    
+                }
+                SoftsLB.Font = new Font("Times New Roman", 10, FontStyle.Regular);
+                SoftsLB.AutoSize = true;
+
+            }
+            
         }
+
 
         private void AffichageAjouterCocktail()
         {
 
         }
+
         private void AffichageRecherche()
         {
             //S'il y avait déjà qqc d'afficher, on l'efface
             Vider();
-            //On recupere les noms des alcools 
-            string[] alcools = m_recherche.NomAlcool();
-            //On recupere les noms de softs
-            string[] softs = m_recherche.NomSoft();
 
+            int w = 200,
+                h = 300,
+                m = 50;
             //On affiche les alcools
-            //Parametres d'affichage
-            int apx = 50, apy = 50, ecart = 30;
-            m_composants.Add(new Label());
-            Label lAlcool = (Label)m_composants[m_composants.Count-1];
-            //m_composants.Add(lAlcool);
-            lAlcool.Text = "Alcools :";
-            lAlcool.Parent = this;
-            lAlcool.Location = new System.Drawing.Point(apx, apy);
-            for (int i = 0; i < alcools.Length; i++)
-            {
-                int y = apy + ((i + 1) * ecart);
-                //Ajout du label avec le nom de l'alcool
-                Label lAl = new Label();
-                m_composants.Add(lAl);
-                lAl.Parent = this;
-                lAl.Text = alcools[i];
-                lAl.Location = new System.Drawing.Point(apx + 15, y);
-                //Ajout de la Checkbox pour (de)selectionner l'alccol
-                CheckBox cAl = new CheckBox();
-                m_composants.Add(cAl);
-                cAl.Parent = this;
-                //On permet enregistre l'index pour retrouver a quel alcool la checkbox correspond par la suite
-                cAl.TabIndex = i;
-                cAl.Location = new System.Drawing.Point(apx, y - 5);
-                //On s'assure que l'action soit transmise a la couche metier
-                cAl.Click += new System.EventHandler(CheckAlcool);
-            }
+            PanneauCB pAlcools = new PanneauCB((this.Width / 6) - (w / 2), m, w, h, "Alcools : ", m_recherche.NomAlcool(), m_recherche.ListeAlcools(), new EventHandler(CheckAlcool));
+            pAlcools.Parent = this;
+            m_composants.Add(pAlcools);
 
             //On affiche les softs
-            //Parametres d'affichage
-            int spx = 300, spy = 50;
-            Label lSoft = new Label();
-            m_composants.Add(lSoft);
-            lSoft.Text = "Softs :";
-            lSoft.Parent = this;
-            lSoft.Location = new System.Drawing.Point(spx, spy);
-            for (int i = 0; i < softs.Length; i++)
-            {
-                int y = spy + ((i + 1) * ecart);
-                //Ajout du label avec le nom de l'alcool
-                Label lSo = new Label();
-                m_composants.Add(lSo);
-                lSo.Parent = this;
-                lSo.Text = softs[i];
-                lSo.Location = new System.Drawing.Point(spx + 15, y);
-                //Ajout de la Checkbox pour (de)selectionner l'alccol
-                CheckBox cSo = new CheckBox();
-                m_composants.Add(cSo);
-                cSo.Parent = this;
-                //On permet enregistre l'index pour retrouver a quel soft la checkbox correspond par la suite
-                cSo.TabIndex = i;
-                cSo.Location = new System.Drawing.Point(spx, y - 5);
-                //On s'assure que l'action soit transmise a la couche metier
-                cSo.Click += new System.EventHandler(CheckSoft);
-            }
+            PanneauCB pSofts = new PanneauCB((this.Width / 2) - (w / 2), m, w, h, "Softs : ", m_recherche.NomSoft(), m_recherche.ListeSofts(), new EventHandler(CheckSoft));
+            //Panneau pSofts = new Panneau(300, 50, 200, 300, "Softs : ", m_recherche.NomSoft());
+            pSofts.Parent = this;
+            m_composants.Add(pSofts);
+
+            //On prepare le panneau d'affichage des cocktails resultats de la recherche
+            Panneau pCocktails = new Panneau((this.Width * 5 / 6) - (w / 2), m, w, h, "Cocktails : ", new string[0]);
+            pCocktails.Parent = this;
+            m_composants.Add(pCocktails);
 
 
             //Bouton de validation
@@ -184,31 +195,33 @@ namespace CocktailsApp
             bVal.Parent = this;
             bVal.Text = "Lancer la recherche";
             bVal.Size = new System.Drawing.Size(130, 23);
-            bVal.Location = new System.Drawing.Point((this.Width - bVal.Size.Width) / 2, this.Height - 100);
+            bVal.Location = new System.Drawing.Point((this.Width / 3) - (bVal.Size.Width / 2), this.Height - 100);
             //On lance la recherche au click
             bVal.Click += new EventHandler(RechercheClick);
+
+            //Bouton de remise a zero du tableau
+            Button bRAZ = new Button();
+            m_composants.Add(bRAZ);
+            bRAZ.Parent = this;
+            bRAZ.Text = "Tout Vider";
+            bRAZ.Size = new System.Drawing.Size(80, 23);
+            bRAZ.Location = new System.Drawing.Point((this.Width * 2 / 3) - (bVal.Size.Width / 2), this.Height - 100);
+            //On decoche toutes les cases au click
+            bRAZ.Click += new EventHandler(RAZClick);
         }
 
         protected void AffichageResultatsRecherche(ArrayList cocktails)
         {
-            //S'il y avait deja qqc on l'efface
-            Vider();
-            //Affichage des résultats
-            //parametres d'affichage
-            int py = 50, ecart = 30;
-            Label lTitre = new Label();
-            m_composants.Add(lTitre);
-            lTitre.Text = "Cocktails disponibles :";
-            lTitre.Parent = this;
-            lTitre.Location = new System.Drawing.Point((this.Width - lTitre.Size.Width) / 2, py);
-            for(int i = 0; i < cocktails.Count; i++)
+            //S'il y avait deja un panneau de resultats, on le recupere
+            Panneau pCocktails = GetPanneau();
+            if (pCocktails != null)
             {
-                int y = py + ((i + 1) * ecart);
-                Label lCo = new Label();
-                m_composants.Add(lCo);
-                lCo.Text = cocktails[i].ToString();
-                lCo.Parent = this;
-                lCo.Location = new System.Drawing.Point((this.Width - lCo.Size.Width) / 2, y);
+                //Affichage des résultats
+                int taille = cocktails.Count;
+                string[] liste = new string[taille];
+                for (int i = 0; i < taille; i++)
+                    liste[i] = cocktails[i].ToString();
+                pCocktails.Donnees(liste);
             }
         }
 
@@ -224,7 +237,18 @@ namespace CocktailsApp
                 }
             }
             m_composants = new ArrayList();
-            
+        }
+
+        protected Panneau GetPanneau()
+        {
+            for (int i = 0; i < m_composants.Count; i++)
+            {
+                if ((m_composants[i] is Panneau) && !(m_composants[i] is PanneauCB))
+                {
+                    return (Panneau)m_composants[i];
+                }
+            }
+            return null;
         }
 
         

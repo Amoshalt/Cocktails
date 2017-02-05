@@ -105,6 +105,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Panneau.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PanneauCB.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Persistance.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

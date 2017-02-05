@@ -29,21 +29,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cocktailsLB = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.listeDesCocktailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rechercheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterUnCocktailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // cocktailsLB
-            // 
-            this.cocktailsLB.AutoSize = true;
-            this.cocktailsLB.Location = new System.Drawing.Point(59, 40);
-            this.cocktailsLB.Name = "cocktailsLB";
-            this.cocktailsLB.Size = new System.Drawing.Size(0, 13);
-            this.cocktailsLB.TabIndex = 5;
             // 
             // menuStrip1
             // 
@@ -83,7 +74,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(454, 395);
-            this.Controls.Add(this.cocktailsLB);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
@@ -97,7 +87,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label cocktailsLB;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem listeDesCocktailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rechercheToolStripMenuItem;
