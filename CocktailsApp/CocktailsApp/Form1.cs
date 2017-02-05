@@ -71,7 +71,11 @@ namespace CocktailsApp
         {
             this.AffichageResultatsRecherche(m_recherche.Valider());
         }
-        
+        private void AjouterClick(Object sender, EventArgs e)
+        {
+            Vider();
+
+        }
         private void RAZClick(Object sender, EventArgs e)
         {
             for(int i = 0; i < m_composants.Count; i++)
@@ -161,6 +165,57 @@ namespace CocktailsApp
 
         private void AffichageAjouterCocktail()
         {
+            //S'il y avait déjà qqc d'afficher, on l'efface
+            Vider();
+
+            int w = 200,
+                h = 300,
+                m = 75;
+            
+            //TextBox nouveau cocktail
+            m_composants.Add(new Label());
+            Label lbCocktail = (Label)m_composants[m_composants.Count - 1];
+            lbCocktail.Parent = this;
+            lbCocktail.Location = new System.Drawing.Point((this.Width / 6) - (w / 2),50);
+            lbCocktail.Text = "Nom Cocktail";
+            lbCocktail.Visible = true;
+            
+            TextBox tbCocktail = new TextBox();
+            m_composants.Add(tbCocktail);
+            tbCocktail.Parent = this;
+            tbCocktail.Size = new System.Drawing.Size(130, 23);
+            tbCocktail.Location = new System.Drawing.Point((this.Width / 6), 50);
+
+            //On affiche les alcools
+            PanneauCB pAlcools = new PanneauCB((this.Width / 6) - (w / 2), m, w, h, "Alcools : ", m_recherche.NomAlcool(), m_recherche.ListeAlcools(), new EventHandler(CheckAlcool));
+            pAlcools.Parent = this;
+            m_composants.Add(pAlcools);
+
+           
+
+            //On affiche les softs
+            PanneauCB pSofts = new PanneauCB((this.Width / 2) - (w / 2), m, w, h, "Softs : ", m_recherche.NomSoft(), m_recherche.ListeSofts(), new EventHandler(CheckSoft));
+            //Panneau pSofts = new Panneau(300, 50, 200, 300, "Softs : ", m_recherche.NomSoft());
+            pSofts.Parent = this;
+            m_composants.Add(pSofts);
+
+            //Bouton de validation
+            Button bVal = new Button();
+            m_composants.Add(bVal);
+            bVal.Parent = this;
+            bVal.Text = "Ajouter";
+            bVal.Size = new System.Drawing.Size(130, 23);
+            bVal.Location = new System.Drawing.Point((this.Width / 3) - (bVal.Size.Width / 2), this.Height - 100);
+            
+            
+            
+            //TextBox nouveau alcool
+
+            //TextBox nouveau soft
+
+            //On lance l'ajout au click
+            bVal.Click += new EventHandler(AjouterClick);
+
 
         }
 
