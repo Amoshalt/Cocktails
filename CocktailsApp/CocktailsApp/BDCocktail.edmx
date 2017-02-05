@@ -135,7 +135,7 @@ warning 6035: The relationship 'fkInSo2' has columns that are not part of the ke
           <Property Name="NOM_SOFT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NUM_SOFT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
-        <EntityContainer Name="isi_projet2_tardymartial_remondvictorEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="isi_projet2_tardymartial_remondvictorEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="alcool" EntityType="Self.alcool" />
           <EntitySet Name="cocktail" EntityType="Self.cocktail" />
           <EntitySet Name="etaperecette" EntityType="Self.etaperecette" />
@@ -148,7 +148,7 @@ warning 6035: The relationship 'fkInSo2' has columns that are not part of the ke
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="isi_projet2_tardymartial_remondvictorBDCocktailsStoreContainer" CdmEntityContainer="isi_projet2_tardymartial_remondvictorEntities1">
+        <EntityContainerMapping StorageEntityContainer="isi_projet2_tardymartial_remondvictorBDCocktailsStoreContainer" CdmEntityContainer="isi_projet2_tardymartial_remondvictorEntities">
           <EntitySetMapping Name="alcool">
             <EntityTypeMapping TypeName="isi_projet2_tardymartial_remondvictorBDCocktails.alcool">
               <MappingFragment StoreEntitySet="alcool">
