@@ -34,9 +34,11 @@
             this.rechercheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterUnCocktailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterUnSoftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
             this.ajouterUnAlcoolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pbCocktails = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCocktails)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -49,7 +51,7 @@
             this.ajouterUnAlcoolToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(750, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(784, 24);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -81,16 +83,6 @@
             this.ajouterUnSoftToolStripMenuItem.Text = "Ajouter un Soft";
             this.ajouterUnSoftToolStripMenuItem.Click += new System.EventHandler(this.AddSoft);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Castellar", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(204, 159);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(261, 44);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Bienvenue";
-            // 
             // ajouterUnAlcoolToolStripMenuItem
             // 
             this.ajouterUnAlcoolToolStripMenuItem.Name = "ajouterUnAlcoolToolStripMenuItem";
@@ -98,19 +90,40 @@
             this.ajouterUnAlcoolToolStripMenuItem.Text = "Ajouter un Alcool";
             this.ajouterUnAlcoolToolStripMenuItem.Click += new System.EventHandler(this.AddAlcool);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Castellar", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 46);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(261, 44);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Bienvenue";
+            // 
+            // pbCocktails
+            // 
+            this.pbCocktails.Image = global::CocktailsApp.Properties.Resources.cocktails_1419481_960_720;
+            this.pbCocktails.Location = new System.Drawing.Point(-12, 27);
+            this.pbCocktails.Name = "pbCocktails";
+            this.pbCocktails.Size = new System.Drawing.Size(796, 448);
+            this.pbCocktails.TabIndex = 8;
+            this.pbCocktails.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(750, 402);
+            this.ClientSize = new System.Drawing.Size(784, 462);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.pbCocktails);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCocktails)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -124,5 +137,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem ajouterUnSoftToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajouterUnAlcoolToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pbCocktails;
     }
 }

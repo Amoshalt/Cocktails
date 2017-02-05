@@ -38,6 +38,7 @@ namespace CocktailsApp
             InitializeComponent();
             this.Size = new Size(800, 500);
             m_composants.Add(label1);
+            m_composants.Add(pbCocktails);
         }
 
         private void quitterAccueil()
@@ -391,7 +392,7 @@ namespace CocktailsApp
             //Nom du soft
             int hN = 30,
                 ecartX = 5,
-                ecartY = 20,
+                ecartY = 30,
                 tabulation = 20;
             Label lNom = new Label();
             m_composants.Add(lNom);
@@ -442,7 +443,7 @@ namespace CocktailsApp
             //Nom du alcool
             int hN = 30,
                 ecartX = 5,
-                ecartY = 20,
+                ecartY = 30,
                 tabulation = 20;
             Label lNom = new Label();
             m_composants.Add(lNom);
@@ -517,6 +518,6 @@ namespace CocktailsApp
             return null;
         }
 
-        
+      
     }
 }
