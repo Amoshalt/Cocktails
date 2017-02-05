@@ -179,7 +179,6 @@ namespace CocktailsApp
 
             //On affiche les softs
             PanneauCB pSofts = new PanneauCB((this.Width / 2) - (w / 2), m, w, h, "Softs : ", m_recherche.NomSoft(), m_recherche.ListeSofts(), new EventHandler(CheckSoft));
-            //Panneau pSofts = new Panneau(300, 50, 200, 300, "Softs : ", m_recherche.NomSoft());
             pSofts.Parent = this;
             m_composants.Add(pSofts);
 
