@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AjouterCocktail.cs" />
+    <Compile Include="AjoutSoft.cs" />
     <Compile Include="alcool.cs">
       <DependentUpon>BDCocktail.tt</DependentUpon>
     </Compile>

@@ -34,7 +34,7 @@ namespace CocktailsApp
             c.NOM_COCKTAIL = (String)listeIngr[0];
             c.TAILLE = (int)listeIngr[1];
             m_persistance.CreationCocktail(c);
-            m_persistance.
+            
         }
     }
 }

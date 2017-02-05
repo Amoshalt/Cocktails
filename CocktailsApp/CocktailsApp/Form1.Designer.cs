@@ -33,8 +33,8 @@
             this.listeDesCocktailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rechercheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajouterUnCocktailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
             this.ajouterUnSoftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,7 +47,7 @@
             this.ajouterUnSoftToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(454, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(750, 24);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -72,16 +72,6 @@
             this.ajouterUnCocktailToolStripMenuItem.Text = "Ajouter un Cocktail";
             this.ajouterUnCocktailToolStripMenuItem.Click += new System.EventHandler(this.ajouterUnCocktailToolStripMenuItem_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Castellar", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(105, 72);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(261, 44);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Bienvenue";
-            //
             // ajouterUnSoftToolStripMenuItem
             // 
             this.ajouterUnSoftToolStripMenuItem.Name = "ajouterUnSoftToolStripMenuItem";
@@ -89,11 +79,21 @@
             this.ajouterUnSoftToolStripMenuItem.Text = "Ajouter un Soft";
             this.ajouterUnSoftToolStripMenuItem.Click += new System.EventHandler(this.AddSoft);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Castellar", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(204, 159);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(261, 44);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Bienvenue";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(454, 395);
+            this.ClientSize = new System.Drawing.Size(750, 402);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
