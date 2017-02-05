@@ -11,21 +11,24 @@ namespace CocktailsApp
         protected Recherche m_recherche;
         protected ArrayList m_composants;
         protected ArrayList m_liste;
+        protected String nomCocktail;
+        protected AjouterCocktail m_aCocktail;
 
         public Form1()
         {
-            Initialiser(new Recherche(), new ListeCocktails());
+            Initialiser(new Recherche(), new ListeCocktails(), new AjouterCocktail());
         }
 
-        public Form1(Recherche r, ListeCocktails lc)
+        public Form1(Recherche r, ListeCocktails lc, AjouterCocktail ac)
         {
-            Initialiser(r,lc);
+            Initialiser(r,lc,ac);
         }
 
-        protected void Initialiser(Recherche r, ListeCocktails lc)
+        protected void Initialiser(Recherche r, ListeCocktails lc, AjouterCocktail ac)
         {
             m_recherche = r;
             m_lCocktails = lc;
+            m_aCocktail = ac;
             m_composants = new ArrayList();
             InitializeComponent();
             this.Size = new Size(800, 500);
@@ -41,6 +44,7 @@ namespace CocktailsApp
         {
             this.Close();
         }
+
         private void Form1_Load(object sender, System.EventArgs e)
         {
             //cocktailsLB.Visible = false;
@@ -81,9 +85,10 @@ namespace CocktailsApp
         {
             this.AffichageResultatsRecherche(m_recherche.Valider());
         }
+
         private void AjouterClick(Object sender, EventArgs e)
         {
-            Vider();
+            m_aCocktail.AddCocktail(m_recherche.Valider());
 
         }
 
@@ -193,7 +198,6 @@ namespace CocktailsApp
             
         }
 
-
         private void AffichageAjouterCocktail()
         {
             //S'il y avait déjà qqc d'afficher, on l'efface
@@ -249,7 +253,8 @@ namespace CocktailsApp
 
         private void AjouterClick(object sender, EventHandler e)
         {
-
+            
+            m_aCocktail.AddCocktail(new ArrayList() );
         }
 
         private void AffichageRecherche()

@@ -332,6 +332,7 @@ namespace CocktailsApp
 
         public void CreationSoft(soft s)
         {
+            
             connexionBD.soft.Add(s);
             connexionBD.SaveChanges();
         }
