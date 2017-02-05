@@ -20,7 +20,8 @@ namespace CocktailsApp
             Persistance persistance = new Persistance();
             Recherche recherche = new Recherche(persistance);
             ListeCocktails listeCocktails = new ListeCocktails(persistance);
-            Form1 vue = new Form1(recherche, listeCocktails);
+            AjoutSoft ajtSoft = new AjoutSoft(persistance);
+            Form1 vue = new Form1(recherche, listeCocktails, ajtSoft);
 
             Application.Run(vue);
         }

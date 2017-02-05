@@ -9,23 +9,25 @@ namespace CocktailsApp
     {
         protected ListeCocktails m_lCocktails;
         protected Recherche m_recherche;
+        protected AjoutSoft m_ajoutSoft;
         protected ArrayList m_composants;
         protected ArrayList m_liste;
 
         public Form1()
         {
-            Initialiser(new Recherche(), new ListeCocktails());
+            Initialiser(new Recherche(), new ListeCocktails(), new AjoutSoft());
         }
 
-        public Form1(Recherche r, ListeCocktails lc)
+        public Form1(Recherche r, ListeCocktails lc, AjoutSoft ajs)
         {
-            Initialiser(r,lc);
+            Initialiser(r, lc, ajs);
         }
 
-        protected void Initialiser(Recherche r, ListeCocktails lc)
+        protected void Initialiser(Recherche r, ListeCocktails lc, AjoutSoft ajs)
         {
             m_recherche = r;
             m_lCocktails = lc;
+            m_ajoutSoft = ajs;
             m_composants = new ArrayList();
             InitializeComponent();
             this.Size = new Size(800, 500);
@@ -74,6 +76,7 @@ namespace CocktailsApp
         {
             this.AffichageResultatsRecherche(m_recherche.Valider());
         }
+
         private void AjouterClick(Object sender, EventArgs e)
         {
             Vider();
@@ -104,12 +107,24 @@ namespace CocktailsApp
             }
         }
 
-        //Ajout d'un soft
+        //Page d'ajout d'un soft
         private void AddSoft(Object sender, EventArgs e)
         {
-            soft s = new soft();
-            s.NOM_SOFT = "Test2";
-            m_recherche.Add(s);
+            AjoutSoft();
+        }
+
+        //Modification du nom du soft
+        private void ModAddSof(Object sender, EventArgs e)
+        {
+            m_ajoutSoft.Nom(((TextBox)sender).Text);
+        }
+
+        //Ajout du cocktail
+        private void ValAjoutSoft(Object s, EventArgs e)
+        {
+            if (m_ajoutSoft.Valider())
+                MessageBox.Show("Le soft a bien ete ajoute.");
+            else MessageBox.Show("Ce soft existe deja.");
         }
 
         private void affichageListCocktails()
@@ -312,10 +327,49 @@ namespace CocktailsApp
             //On vide la fenetre si jamais il y avait deja qqc d'affiche
             Vider();
 
-            //On affiche les champs de saisie
+            //Titre
+            int hT = 30,
+                py = 20;
             Label lTitre = new Label();
+            m_composants.Add(lTitre);
             lTitre.TextAlign = ContentAlignment.MiddleCenter;
             lTitre.Parent = this;
+            lTitre.Text = "Ajout d'un soft";
+            lTitre.Size = new Size(this.Width - 2, hT);
+            lTitre.Location = new Point(1, py);
+
+            //Nom du soft
+            int hN = 30,
+                ecartX = 5,
+                ecartY = 20,
+                tabulation = 20;
+            Label lNom = new Label();
+            m_composants.Add(lNom);
+            lNom.TextAlign = ContentAlignment.BottomLeft;
+            lNom.Parent = this;
+            lNom.Text = "Nom du soft : ";
+            lNom.AutoSize = true;
+            lNom.Size = new Size(lNom.Width, hN);
+            lNom.Location = new Point(tabulation, lTitre.Location.Y + lTitre.Height + ecartY);
+            //Entree
+            TextBox tNom = new TextBox();
+            m_composants.Add(tNom);
+            tNom.Parent = this;
+            tNom.MaxLength = 29;
+            tNom.Size = new Size(200, hN);
+            tNom.Location = new Point(lNom.Location.X + lNom.Width + ecartX, lNom.Location.Y);
+            tNom.TextChanged += new EventHandler(ModAddSof);
+
+            //Bouton de validation
+            int lB = 80,
+                hB = 30;
+            Button bVal = new Button();
+            m_composants.Add(bVal);
+            bVal.Parent = this;
+            bVal.Text = "Ajouter";
+            bVal.Size = new Size(lB, hB);
+            bVal.Location = new Point((tNom.Location.X + tNom.Width - lB) / 2, tNom.Location.Y + ecartY);
+            bVal.Click += new EventHandler(ValAjoutSoft);
         }
 
         //Fonction de nettoyage de l'écran

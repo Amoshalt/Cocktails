@@ -234,10 +234,9 @@ namespace CocktailsApp
             return existence;
         }
 
+        //Return true si le soft existe, false sinon
         public Boolean getExistenceSoft(String nomSoft)
         {
-            Boolean existence = new Boolean();
-            existence = true;
             var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
             var table = contexteBD.CreateObjectSet<soft>();
             ArrayList lS = new ArrayList();
@@ -248,21 +247,18 @@ namespace CocktailsApp
                               where d.NOM_SOFT == nomSoft
                               select d;
                 var repC = ((ObjectQuery)requete).Execute(MergeOption.AppendOnly);
-                foreach (cocktail c in repC)
+                foreach (soft c in repC)
                 {
                     lS.Add(c);
                 }
 
-                if (lS.Count == 0)
-                {
-                    existence = false;
-                }
+                return (lS.Count != 0);
             }
             catch (Exception ex)
             {
                 Console.WriteLine("E getExistenceCocktail : " + ex.GetBaseException().Message);
             }
-            return existence;
+            return true;
         }
 
         public Boolean getExistenceAlcool(String nomAlcool)
@@ -332,8 +328,15 @@ namespace CocktailsApp
 
         public void CreationSoft(soft s)
         {
-            connexionBD.soft.Add(s);
-            connexionBD.SaveChanges();
+            try
+            {
+                connexionBD.soft.Add(s);
+                connexionBD.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Erreur Ajout Soft : " + e.GetBaseException().Message);
+            }
         }
 
         public void CreationAlcool(alcool a)
