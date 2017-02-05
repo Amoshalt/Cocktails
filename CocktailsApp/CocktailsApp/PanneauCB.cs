@@ -17,7 +17,7 @@ namespace CocktailsApp
             Donnees(new string[0], new bool[0], null);
         }
 
-        public PanneauCB(int x, int y, int l, int h, string titre, string[] liste, bool[] test, EventHandler e) : base(x, y, l, h, titre, new string[0])
+        public PanneauCB(int x, int y, int l, int h, string titre, string[] liste, bool[] test, EventHandler e) : base(x, y, l, h, titre, new string[0], null)
         {
             Donnees(liste, test, e);
         }

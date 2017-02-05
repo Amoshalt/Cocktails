@@ -419,5 +419,31 @@ namespace CocktailsApp
         }
 
         //Retourne la liste des etaperecette liees au cocktail dont le numero est passe en parametre
+        public ArrayList getEtapes(int numCo)
+        {
+            var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
+            var table = contexteBD.CreateObjectSet<etaperecette>();
+            ArrayList liste = new ArrayList();
+            
+            try
+            {
+                //On recupere les etapes dans l'ordre
+                var requete = from d in table
+                                where d.NUM_COCKTAIL == numCo
+                                orderby d.NUM_ETAPE ascending
+                                select d;
+                var repS = ((ObjectQuery)requete).Execute(MergeOption.AppendOnly);
+                foreach (etaperecette e in repS)
+                {
+                    liste.Add(e);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("E getAlcoolsEtape : " + ex.GetBaseException().Message);
+            }
+
+            return liste;
+        }
     }
 }
