@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="isi_projet2_tardymartial_remondvictorBDCocktails" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="alcool">
+    <Key>
+      <PropertyRef Name="NOM_ALCOOL" />
+    </Key>
+    <Property Name="NOM_ALCOOL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NUM_ALCOOL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DEGRE" Type="Single" />
+  </EntityType>
+  <EntityType Name="cocktail">
+    <Key>
+      <PropertyRef Name="NOM_COCKTAIL" />
+    </Key>
+    <Property Name="NOM_COCKTAIL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NUM_COCKTAIL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IMG" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TAILLE" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="etaperecette">
+    <Key>
+      <PropertyRef Name="NUM_COCKTAIL" />
+      <PropertyRef Name="NUM_ETAPE" />
+    </Key>
+    <Property Name="NUM_COCKTAIL" Type="Int32" Nullable="false" />
+    <Property Name="NUM_ETAPE" Type="Int32" Nullable="false" />
+    <Property Name="ETAPE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ingredientalcool">
+    <Key>
+      <PropertyRef Name="NUM_COCKTAIL" />
+      <PropertyRef Name="NUM_ALCOOL" />
+    </Key>
+    <Property Name="NUM_COCKTAIL" Type="Int32" Nullable="false" />
+    <Property Name="NUM_ALCOOL" Type="Int32" Nullable="false" />
+    <Property Name="QUANTITE" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ingredientsoft">
+    <Key>
+      <PropertyRef Name="NUM_COCKTAIL" />
+      <PropertyRef Name="NUM_SOFT" />
+    </Key>
+    <Property Name="NUM_COCKTAIL" Type="Int32" Nullable="false" />
+    <Property Name="NUM_SOFT" Type="Int32" Nullable="false" />
+    <Property Name="QUANTITE" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="soft">
+    <Key>
+      <PropertyRef Name="NOM_SOFT" />
+    </Key>
+    <Property Name="NOM_SOFT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NUM_SOFT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityContainer Name="isi_projet2_tardymartial_remondvictorEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="alcool" EntityType="Self.alcool" />
+    <EntitySet Name="cocktail" EntityType="Self.cocktail" />
+    <EntitySet Name="etaperecette" EntityType="Self.etaperecette" />
+    <EntitySet Name="ingredientalcool" EntityType="Self.ingredientalcool" />
+    <EntitySet Name="ingredientsoft" EntityType="Self.ingredientsoft" />
+    <EntitySet Name="soft" EntityType="Self.soft" />
+  </EntityContainer>
+</Schema>

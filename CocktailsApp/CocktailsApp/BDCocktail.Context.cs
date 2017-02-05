@@ -13,9 +13,9 @@ namespace CocktailsApp
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class isi_projet2_tardymartial_remondvictorEntities1 : DbContext
+    public partial class isi_projet2_tardymartial_remondvictorEntities : DbContext
     {
-        public isi_projet2_tardymartial_remondvictorEntities1()
+        public isi_projet2_tardymartial_remondvictorEntities()
             : base("name=isi_projet2_tardymartial_remondvictorEntities1")
         {
         }

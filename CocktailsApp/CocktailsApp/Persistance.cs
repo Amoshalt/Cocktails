@@ -16,9 +16,9 @@ namespace CocktailsApp
         public Persistance()
         {
             connexionBD = new isi_projet2_tardymartial_remondvictorEntities();
-            
         }
 
+        //Retourne la liste des cocktails
         public ArrayList getCocktails()
         {
             var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
@@ -29,7 +29,6 @@ namespace CocktailsApp
             {
                 IQueryable<cocktail> requete = from d in table
                                                select d;
-                Console.WriteLine("\nRequete : " + requete.Expression + "\n");
                 var repCock = ((ObjectQuery)requete).Execute(MergeOption.AppendOnly);
                 foreach (cocktail cktl in repCock)
                 {
@@ -43,6 +42,7 @@ namespace CocktailsApp
             return listCocktail;
         }
 
+        //Retourne la liste des softs
         public ArrayList getSofts()
         {
             var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
@@ -66,6 +66,7 @@ namespace CocktailsApp
             return listSoft;
         }
 
+        //Retourne la liste des alcools
         public ArrayList getAlccols()
         {
             var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
@@ -89,6 +90,7 @@ namespace CocktailsApp
             return liste;
         }
 
+        //Retourne la liste des ingredientalcool lies au cocktail dont le numero est passe en parametre
         public ArrayList getIngredientsAlcool(int numCock)
         {
             var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
@@ -113,6 +115,7 @@ namespace CocktailsApp
             return listIAC;
         }
 
+        //Retourne la liste des ingredientsoft lies au cocktail dont le numero est passe en parametre
         public ArrayList getIngredientsSoft(int numCock)
         {
             var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
@@ -137,6 +140,7 @@ namespace CocktailsApp
             return listIAS;
         }
 
+        //Retourne la liste des softs contenus dans le cocktail dont le numero est passe en parametre
         public ArrayList getSoftsCocktail(int numCock)
         {
             var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
@@ -167,6 +171,7 @@ namespace CocktailsApp
 
         }
 
+        //Retourne la liste des alcools contenus dans le cocktail dont le numero est passe en parametre
         public ArrayList getAlcoolsCocktail(int numCock)
         {
             var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
@@ -412,5 +417,7 @@ namespace CocktailsApp
             }
             return liste;
         }
+
+        //Retourne la liste des etaperecette liees au cocktail dont le numero est passe en parametre
     }
 }
