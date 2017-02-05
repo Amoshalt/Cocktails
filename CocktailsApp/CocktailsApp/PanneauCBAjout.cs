@@ -35,6 +35,15 @@ namespace CocktailsApp
             for (int i = 0; i < liste.Length; i++)
             {
                 int ty = py + (i * ecart);
+                //Ajout de la textBox avec rien à l'intérieur:
+                m_tbElements[i] = new TextBox();
+                m_tbElements[i].Parent = m_sousPanel;
+                m_tbElements[i].Size = new Size(100, 23);
+                m_tbElements[i].Visible = false;
+                m_tbElements[i].Location = new Point((this.Width / 2), ty);
+                m_tbElements[i].TabIndex = i;
+                m_tbElements[i].Click += new EventHandler(videTB);
+
                 //Ajout du label avec le nom de l'element
                 m_lElements[i] = new Label();
                 m_lElements[i].Size = new Size(m_sousPanel.Width - (1 + px + tab), ecart - 2);
@@ -42,11 +51,7 @@ namespace CocktailsApp
                 m_lElements[i].Text = liste[i];
                 m_lElements[i].Location = new Point(px + tab, ty);
 
-                //Ajout de la textBox avec rien à l'intérieur:
-                m_tbElements[i] = new TextBox();
-                m_lElements[i].Parent = m_sousPanel;
-                m_lElements[i].Size = new Size(m_sousPanel.Width - (1 + px + tab), ecart - 2);
-                m_lElements[i].Location = new Point(px + tab, ty + ecart);
+                
 
                 //Ajout de la Checkbox pour (de)selectionner l'element
                 m_cElements[i] = new CheckBox();
@@ -55,6 +60,8 @@ namespace CocktailsApp
                 //On permet enregistre l'index pour retrouver a quel element la checkbox correspond par la suite
                 m_cElements[i].TabIndex = i;
                 m_cElements[i].Location = new Point(px, ty - 5);
+
+                m_cElements[i].CheckedChanged += new EventHandler(ClickIngredient);
                 //Si l'utilisateur avait declare cet element comme disponnible, on coche la case
                 if ((i < test.Length) && test[i])
                     m_cElements[i].Checked = true;
@@ -62,6 +69,23 @@ namespace CocktailsApp
                 if (e != null)
                     m_cElements[i].Click += e;
             }
+
+        }
+
+        private void videTB(Object sender, EventArgs e)
+        {
+            ((TextBox)sender).Text = "";
+        }
+
+        private void ClickIngredient(Object sender, EventArgs e)
+        {
+            if (((CheckBox)sender).Checked == true)
+            {
+                m_tbElements[((CheckBox)sender).TabIndex].Text = "Quantité en mL";
+                m_tbElements[((CheckBox)sender).TabIndex].Visible = true;
+            }
+            else
+                m_tbElements[((CheckBox)sender).TabIndex].Visible = false;
 
         }
 

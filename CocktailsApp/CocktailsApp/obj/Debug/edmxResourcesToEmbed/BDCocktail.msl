@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="isi_projet2_tardymartial_remondvictorBDCocktailsStoreContainer" CdmEntityContainer="isi_projet2_tardymartial_remondvictorEntities1">
+  <EntityContainerMapping StorageEntityContainer="isi_projet2_tardymartial_remondvictorBDCocktailsStoreContainer" CdmEntityContainer="isi_projet2_tardymartial_remondvictorEntities">
     <EntitySetMapping Name="alcool">
       <EntityTypeMapping TypeName="isi_projet2_tardymartial_remondvictorBDCocktails.alcool">
         <MappingFragment StoreEntitySet="alcool">
