@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="isi_projet2_tardymartial_remondvictorModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="isi_projet2_tardymartial_remondvictorBDCocktails.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="alcool">
           <Key>
             <PropertyRef Name="NOM_ALCOOL" />
@@ -19,7 +19,7 @@
           </Key>
           <Property Name="NOM_COCKTAIL" Type="char" MaxLength="30" Nullable="false" />
           <Property Name="NUM_COCKTAIL" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IMG" Type="char" MaxLength="100" />
+          <Property Name="IMG" Type="varchar" MaxLength="100" />
           <Property Name="TAILLE" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="etaperecette">
@@ -29,7 +29,7 @@
           </Key>
           <Property Name="NUM_COCKTAIL" Type="int" Nullable="false" />
           <Property Name="NUM_ETAPE" Type="int" Nullable="false" />
-          <Property Name="QUANTITE" Type="int" Nullable="false" />
+          <Property Name="ETAPE" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="ingredientalcool">
           <Key>
@@ -56,22 +56,22 @@
           <Property Name="NOM_SOFT" Type="char" MaxLength="30" Nullable="false" />
           <Property Name="NUM_SOFT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
-        <!--Erreurs détectées durant la génération :
-avertissement 6035: La relation 'fkEtRe' a des colonnes qui ne font pas partie de la clé de la table du côté primaire de la relation. La relation a été exclue.
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'fkEtRe' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="fkEtRe" />-->
-        <!--Erreurs détectées durant la génération :
-avertissement 6035: La relation 'fkInAl1' a des colonnes qui ne font pas partie de la clé de la table du côté primaire de la relation. La relation a été exclue.
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'fkInAl1' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="fkInAl1" />-->
-        <!--Erreurs détectées durant la génération :
-avertissement 6035: La relation 'fkInAl2' a des colonnes qui ne font pas partie de la clé de la table du côté primaire de la relation. La relation a été exclue.
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'fkInAl2' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="fkInAl2" />-->
-        <!--Erreurs détectées durant la génération :
-avertissement 6035: La relation 'fkInSo1' a des colonnes qui ne font pas partie de la clé de la table du côté primaire de la relation. La relation a été exclue.
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'fkInSo1' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="fkInSo1" />-->
-        <!--Erreurs détectées durant la génération :
-avertissement 6035: La relation 'fkInSo2' a des colonnes qui ne font pas partie de la clé de la table du côté primaire de la relation. La relation a été exclue.
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'fkInSo2' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="fkInSo2" />-->
-        <EntityContainer Name="isi_projet2_tardymartial_remondvictorModelStoreContainer">
+        <EntityContainer Name="isi_projet2_tardymartial_remondvictorBDCocktailsStoreContainer">
           <EntitySet Name="alcool" EntityType="Self.alcool" Schema="isi_projet2_tardymartial_remondvictor" store:Type="Tables" />
           <EntitySet Name="cocktail" EntityType="Self.cocktail" Schema="isi_projet2_tardymartial_remondvictor" store:Type="Tables" />
           <EntitySet Name="etaperecette" EntityType="Self.etaperecette" Schema="isi_projet2_tardymartial_remondvictor" store:Type="Tables" />
@@ -83,7 +83,7 @@ avertissement 6035: La relation 'fkInSo2' a des colonnes qui ne font pas partie 
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="isi_projet2_tardymartial_remondvictorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="isi_projet2_tardymartial_remondvictorBDCocktails" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="alcool">
           <Key>
             <PropertyRef Name="NOM_ALCOOL" />
@@ -108,7 +108,7 @@ avertissement 6035: La relation 'fkInSo2' a des colonnes qui ne font pas partie 
           </Key>
           <Property Name="NUM_COCKTAIL" Type="Int32" Nullable="false" />
           <Property Name="NUM_ETAPE" Type="Int32" Nullable="false" />
-          <Property Name="QUANTITE" Type="Int32" Nullable="false" />
+          <Property Name="ETAPE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ingredientalcool">
           <Key>
@@ -135,7 +135,7 @@ avertissement 6035: La relation 'fkInSo2' a des colonnes qui ne font pas partie 
           <Property Name="NOM_SOFT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NUM_SOFT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
-        <EntityContainer Name="isi_projet2_tardymartial_remondvictorEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="isi_projet2_tardymartial_remondvictorEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="alcool" EntityType="Self.alcool" />
           <EntitySet Name="cocktail" EntityType="Self.cocktail" />
           <EntitySet Name="etaperecette" EntityType="Self.etaperecette" />
@@ -148,9 +148,9 @@ avertissement 6035: La relation 'fkInSo2' a des colonnes qui ne font pas partie 
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="isi_projet2_tardymartial_remondvictorModelStoreContainer" CdmEntityContainer="isi_projet2_tardymartial_remondvictorEntities">
+        <EntityContainerMapping StorageEntityContainer="isi_projet2_tardymartial_remondvictorBDCocktailsStoreContainer" CdmEntityContainer="isi_projet2_tardymartial_remondvictorEntities1">
           <EntitySetMapping Name="alcool">
-            <EntityTypeMapping TypeName="isi_projet2_tardymartial_remondvictorModel.alcool">
+            <EntityTypeMapping TypeName="isi_projet2_tardymartial_remondvictorBDCocktails.alcool">
               <MappingFragment StoreEntitySet="alcool">
                 <ScalarProperty Name="NOM_ALCOOL" ColumnName="NOM_ALCOOL" />
                 <ScalarProperty Name="NUM_ALCOOL" ColumnName="NUM_ALCOOL" />
@@ -159,7 +159,7 @@ avertissement 6035: La relation 'fkInSo2' a des colonnes qui ne font pas partie 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="cocktail">
-            <EntityTypeMapping TypeName="isi_projet2_tardymartial_remondvictorModel.cocktail">
+            <EntityTypeMapping TypeName="isi_projet2_tardymartial_remondvictorBDCocktails.cocktail">
               <MappingFragment StoreEntitySet="cocktail">
                 <ScalarProperty Name="NOM_COCKTAIL" ColumnName="NOM_COCKTAIL" />
                 <ScalarProperty Name="NUM_COCKTAIL" ColumnName="NUM_COCKTAIL" />
@@ -169,16 +169,16 @@ avertissement 6035: La relation 'fkInSo2' a des colonnes qui ne font pas partie 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="etaperecette">
-            <EntityTypeMapping TypeName="isi_projet2_tardymartial_remondvictorModel.etaperecette">
+            <EntityTypeMapping TypeName="isi_projet2_tardymartial_remondvictorBDCocktails.etaperecette">
               <MappingFragment StoreEntitySet="etaperecette">
                 <ScalarProperty Name="NUM_COCKTAIL" ColumnName="NUM_COCKTAIL" />
                 <ScalarProperty Name="NUM_ETAPE" ColumnName="NUM_ETAPE" />
-                <ScalarProperty Name="QUANTITE" ColumnName="QUANTITE" />
+                <ScalarProperty Name="ETAPE" ColumnName="ETAPE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ingredientalcool">
-            <EntityTypeMapping TypeName="isi_projet2_tardymartial_remondvictorModel.ingredientalcool">
+            <EntityTypeMapping TypeName="isi_projet2_tardymartial_remondvictorBDCocktails.ingredientalcool">
               <MappingFragment StoreEntitySet="ingredientalcool">
                 <ScalarProperty Name="NUM_COCKTAIL" ColumnName="NUM_COCKTAIL" />
                 <ScalarProperty Name="NUM_ALCOOL" ColumnName="NUM_ALCOOL" />
@@ -187,7 +187,7 @@ avertissement 6035: La relation 'fkInSo2' a des colonnes qui ne font pas partie 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ingredientsoft">
-            <EntityTypeMapping TypeName="isi_projet2_tardymartial_remondvictorModel.ingredientsoft">
+            <EntityTypeMapping TypeName="isi_projet2_tardymartial_remondvictorBDCocktails.ingredientsoft">
               <MappingFragment StoreEntitySet="ingredientsoft">
                 <ScalarProperty Name="NUM_COCKTAIL" ColumnName="NUM_COCKTAIL" />
                 <ScalarProperty Name="NUM_SOFT" ColumnName="NUM_SOFT" />
@@ -196,7 +196,7 @@ avertissement 6035: La relation 'fkInSo2' a des colonnes qui ne font pas partie 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="soft">
-            <EntityTypeMapping TypeName="isi_projet2_tardymartial_remondvictorModel.soft">
+            <EntityTypeMapping TypeName="isi_projet2_tardymartial_remondvictorBDCocktails.soft">
               <MappingFragment StoreEntitySet="soft">
                 <ScalarProperty Name="NOM_SOFT" ColumnName="NOM_SOFT" />
                 <ScalarProperty Name="NUM_SOFT" ColumnName="NUM_SOFT" />
@@ -220,7 +220,7 @@ avertissement 6035: La relation 'fkInSo2' a des colonnes qui ne font pas partie 
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="true" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
