@@ -27,6 +27,7 @@ namespace CocktailsApp
             Initialiser(r,lc,ac, ajs, aja);
         }
 
+        //Initialise la fenetre avec la page d'accueuil
         protected void Initialiser(Recherche r, ListeCocktails lc, AjouterCocktail ac, AjoutSoft ajs, AjoutAlcool aja)
         {
             m_recherche = r;
@@ -41,12 +42,11 @@ namespace CocktailsApp
             m_composants.Add(pbCocktails);
         }
 
-        private void quitterAccueil()
-        {
-            label1.Visible = false;
-        }
-        //Gestion des events
-
+        //
+        //General
+        //
+        
+        //Ferme la fenetre
         private void fermer1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -57,51 +57,10 @@ namespace CocktailsApp
             //cocktailsLB.Visible = false;
         }
 
-        private void listeDesCocktailsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            quitterAccueil();
-            AffichageCocktails();
-        }
-
-        //Lance la recherche d'un cocktail
-        private void RechercheEvent(object sender, EventArgs e)
-        {
-            quitterAccueil();
-            AffichageRecherche();
-        }
-
-        private void ajouterUnCocktailToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            quitterAccueil();
-            AffichageAjouterCocktail();
-        }
-
-        //Modiifie la disponnibilité d'un soft via un event
-        private void CheckSoft(Object sender, EventArgs e)
-        {
-            m_recherche.ModifSoft(((CheckBox)sender).TabIndex);
-        }
-
-        //Modiifie la disponnibilité d'un alcool via un event
-        private void CheckAlcool(Object sender, EventArgs e)
-        {
-            m_recherche.ModifAlcool(((CheckBox)sender).TabIndex);
-        }
-
-        private void RechercheClick(Object sender, EventArgs e)
-        {
-            this.AffichageResultatsRecherche(m_recherche.Valider());
-        }
-
-        private void AjouterClick(Object sender, EventArgs e)
-        {
-            m_aCocktail.AddCocktail(m_recherche.Valider());
-        }
-
-        //Decoche toutes les CheckBox
+        //Decoche toutes les CheckBox contenues dans les PanneauCB
         private void RAZClick(Object sender, EventArgs e)
         {
-            for(int i = 0; i < m_composants.Count; i++)
+            for (int i = 0; i < m_composants.Count; i++)
             {
                 if (m_composants[i] is PanneauCB)
                 {
@@ -111,101 +70,44 @@ namespace CocktailsApp
             m_recherche.Clean();
         }
 
-        //Affiche la fenetre detaillant un cocktail
-        private void Detail(Object sender, EventArgs e)
+        //Fonction de nettoyage de l'écran
+        protected void Vider()
         {
-            int index = ((Label)sender).TabIndex;
-            if((m_liste != null) && (m_liste.Count > index))
+            for (int i = 0; i < m_composants.Count; i++)
             {
-                Description d = new Description((cocktail)m_liste[index], m_recherche);
-                d.Show();
-            }
-        }
-
-        //Page d'ajout d'un soft
-        private void AddSoft(Object sender, EventArgs e)
-        {
-            AffAjoutSoft();
-        }
-
-        //Modification du nom du soft
-        private void ModAddSof(Object sender, EventArgs e)
-        {
-            m_ajoutSoft.Nom(((TextBox)sender).Text);
-        }
-
-        //Ajout du cocktail
-        private void ValAjoutSoft(Object s, EventArgs e)
-        {
-            if (m_ajoutSoft.Valider())
-                MessageBox.Show("Le soft a bien ete ajoute.");
-            else MessageBox.Show("Ce soft existe deja.");
-        }
-
-        //Page d'ajout d'un soft
-        private void AddAlcool(Object sender, EventArgs e)
-        {
-            AffAjoutAlcool();
-        }
-
-        //Modification du nom du soft
-        private void ModAddAlc(Object sender, EventArgs e)
-        {
-            m_ajoutAlcool.Nom(((TextBox)sender).Text);
-        }
-
-        private void ModDegAlcool(Object sender, EventArgs e)
-        {
-            string str = ((TextBox)sender).Text;
-            if (str != "")
-            {
-                bool test = true;
-                bool change = false;
-                string bis = "";
-                //On verifie qu'il n'y a que des chiffres
-                for (int i = 0; (i < str.Length) && test; i++)
+                if (this.Controls.Contains((Control)m_composants[i]))
                 {
-                    if (test = (str[i] >= '0') && (str[i] <= '9') && (i < 3))
-                        bis += str[i];
-                }
-                change = !test;
-                //On enleve tous les 0 en debut de nombre
-                while((bis != "") && (bis[0] == '0'))
-                {
-                    string temp = "";
-                    for (int i = 1; i < bis.Length; i++)
-                        temp += bis[i];
-                    bis = temp;
-                    change = true;
-                }
-                if (test)
-                {
-                    int d = int.Parse(str);
-                    if(d > 100)
-                    {
-                        test = false;
-                        bis = "100";
-
-                    }
-                    else if(d > 0)
-                        m_ajoutAlcool.Degre(d);
-                }
-                //On affiche une valeur valide dans la TextBox
-                if(change)
-                {
-                    ((TextBox)sender).Text = bis;
-                    ((TextBox)sender).SelectionStart = bis.Length;
-                    ((TextBox)sender).SelectionLength = 0;
+                    this.Controls.Remove((Control)m_composants[i]);
+                    ((Control)m_composants[i]).Dispose();
                 }
             }
+            m_composants = new ArrayList();
         }
 
-        //Ajout du cocktail
-        private void ValAjoutAlcool(Object s, EventArgs e)
+        //Retourne la premiere instance de type Panneau et non PanneauCB affichee
+        protected Panneau GetPanneau()
         {
-            MessageBox.Show(m_ajoutAlcool.Valider());
+            for (int i = 0; i < m_composants.Count; i++)
+            {
+                if ((m_composants[i] is Panneau) && !(m_composants[i] is PanneauCB))
+                {
+                    return (Panneau)m_composants[i];
+                }
+            }
+            return null;
         }
 
+        //
+        //Liste des cocktails
+        //
+
+        //Lance l'affichage de la liste des cocktails
+        private void listeDesCocktailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AffichageCocktails();
+        }
+
+        //Utilisee ???
         private void affichageListCocktails()
         {
             /*
@@ -214,6 +116,7 @@ namespace CocktailsApp
             */
         }
 
+        //Affiche la liste des cocktails
         private void AffichageCocktails()
         {
             //S'il y avait déjà qqc d'afficher, on l'efface
@@ -232,14 +135,14 @@ namespace CocktailsApp
                 m_composants.Add(new Label());
                 Label NomCocktailsLB = (Label)m_composants[m_composants.Count - 1];
                 NomCocktailsLB.Parent = this;
-                NomCocktailsLB.Location = new Point(apx, apy*(i+1));
+                NomCocktailsLB.Location = new Point(apx, apy * (i + 1));
                 NomCocktailsLB.Text = "";
                 NomCocktailsLB.Visible = true;
 
                 ArrayList cock = ((ArrayList)cocktailsIngredients[i]);
                 ArrayList cockAlcools = ((ArrayList)cock[1]);
                 ArrayList cockSofts = ((ArrayList)cock[2]);
-                
+
                 NomCocktailsLB.Text = (String)cock[0] + ": ";
                 NomCocktailsLB.Font = new Font("Times New Roman", 10, FontStyle.Underline);
                 NomCocktailsLB.AutoSize = true;
@@ -247,12 +150,12 @@ namespace CocktailsApp
                 m_composants.Add(new Label());
                 Label AlcoolsLB = (Label)m_composants[m_composants.Count - 1];
                 AlcoolsLB.Parent = this;
-                AlcoolsLB.Location = new Point(NomCocktailsLB.Location.X + ecart* 5, apy * (i + 1));
+                AlcoolsLB.Location = new Point(NomCocktailsLB.Location.X + ecart * 5, apy * (i + 1));
                 if (cockAlcools.Count > 0)
                     AlcoolsLB.Text = ((alcool)cockAlcools[0]).NOM_ALCOOL;
                 else AlcoolsLB.Text = ((soft)cockSofts[0]).NOM_SOFT;
                 AlcoolsLB.Visible = true;
-                
+
                 for (int j = 1; j < cockAlcools.Count; j++)
                     AlcoolsLB.Text += ", " + ((alcool)cockAlcools[j]).NOM_ALCOOL;
                 AlcoolsLB.Font = new Font("Times New Roman", 10, FontStyle.Regular);
@@ -267,7 +170,7 @@ namespace CocktailsApp
                 SoftsLB.Location = new Point(x, apy * (i + 1));
                 SoftsLB.Text = "";
                 SoftsLB.Visible = true;
-                
+
 
                 for (int j = 0; j < cockSofts.Count; j++)
                 {
@@ -278,73 +181,49 @@ namespace CocktailsApp
                 SoftsLB.Font = new Font("Times New Roman", 10, FontStyle.Regular);
                 SoftsLB.AutoSize = true;
             }
-            
+
         }
 
-        private void AffichageAjouterCocktail()
+        //
+        //Recherche de cocktails par ingredients
+        //
+
+        //Lance la recherche d'un cocktail
+        private void RechercheEvent(object sender, EventArgs e)
         {
-            //Code 1
-            if (prev != 1)
-                m_recherche.Clean();
-            prev = 1;
-
-            //S'il y avait déjà qqc d'afficher, on l'efface
-            Vider();
-
-            int w = 200,
-                h = 300,
-                m = 75;
-            
-            //TextBox nouveau cocktail
-            m_composants.Add(new Label());
-            Label lbCocktail = (Label)m_composants[m_composants.Count - 1];
-            lbCocktail.Parent = this;
-            lbCocktail.Location = new Point((this.Width / 6) - (w / 2),50);
-            lbCocktail.Text = "Nom Cocktail";
-            lbCocktail.Visible = true;
-            
-            TextBox tbCocktail = new TextBox();
-            m_composants.Add(tbCocktail);
-            tbCocktail.Parent = this;
-            tbCocktail.Size = new Size(130, 23);
-            tbCocktail.Location = new Point((this.Width / 6), 50);
-
-
-            //On affiche les alcools
-            PanneauCBAjout pAlcools = new PanneauCBAjout((this.Width / 6) - (w / 2), m, w+100, h, "Alcools : ", m_recherche.NomAlcool(), m_recherche.ListeAlcools(), new EventHandler(CheckAlcool));
-            pAlcools.Parent = this;
-            m_composants.Add(pAlcools);
-
-           
-
-            //On affiche les softs
-            PanneauCBAjout pSofts = new PanneauCBAjout((this.Width / 2) - (w / 4), m, w+100, h, "Softs : ", m_recherche.NomSoft(), m_recherche.ListeSofts(), new EventHandler(CheckSoft));
-            //Panneau pSofts = new Panneau(300, 50, 200, 300, "Softs : ", m_recherche.NomSoft());
-            pSofts.Parent = this;
-            m_composants.Add(pSofts);
-
-            //Bouton de validation
-            Button bVal = new Button();
-            m_composants.Add(bVal);
-            bVal.Parent = this;
-            bVal.Text = "Ajouter";
-            bVal.Size = new Size(130, 23);
-            bVal.Location = new Point((this.Width / 3) - (bVal.Size.Width / 2), this.Height - 100);
-            
-            
-            
-           //On lance l'ajout au click
-            bVal.Click += new EventHandler(AjouterCocktailClick);
-
-
+            AffichageRecherche();
         }
 
-        private void AjouterCocktailClick(Object sender, EventArgs e)
+        //Modiifie la disponnibilite d'un soft via un event
+        private void CheckSoft(Object sender, EventArgs e)
         {
-            
-            m_aCocktail.AddCocktail(new ArrayList() );
+            m_recherche.ModifSoft(((CheckBox)sender).TabIndex);
         }
 
+        //Modiifie la disponnibilite d'un alcool via un event
+        private void CheckAlcool(Object sender, EventArgs e)
+        {
+            m_recherche.ModifAlcool(((CheckBox)sender).TabIndex);
+        }
+
+        //Affiche les resultats de la recherche de cocktail
+        private void RechercheClick(Object sender, EventArgs e)
+        {
+            this.AffichageResultatsRecherche(m_recherche.Valider());
+        }
+
+        //Affiche la fenetre detaillant un cocktail
+        private void Detail(Object sender, EventArgs e)
+        {
+            int index = ((Label)sender).TabIndex;
+            if ((m_liste != null) && (m_liste.Count > index))
+            {
+                Description d = new Description((cocktail)m_liste[index], m_recherche);
+                d.Show();
+            }
+        }
+
+        //Page de recherche de cocktails par ingredients
         private void AffichageRecherche()
         {
             //Code 2
@@ -395,6 +274,7 @@ namespace CocktailsApp
             bRAZ.Click += new EventHandler(RAZClick);
         }
 
+        //Modification de la page pour afficher les resultats
         protected void AffichageResultatsRecherche(ArrayList cocktails)
         {
             //S'il y avait deja un panneau de resultats, on le recupere
@@ -410,6 +290,111 @@ namespace CocktailsApp
                     liste[i] = ((cocktail)cocktails[i]).ToString();
                 pCocktails.Donnees(liste, new EventHandler(Detail));
             }
+        }
+
+        //
+        //Ajout d'un cocktail
+        //
+
+        //Affiche la page d'ajout d'un cocktail
+        private void ajouterUnCocktailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AffichageAjouterCocktail();
+        }
+
+        //Utilisee ???
+        private void AjouterClick(Object sender, EventArgs e)
+        {
+            m_aCocktail.AddCocktail(m_recherche.Valider());
+        }
+
+        //Valide l'ajout d'un cocktail
+        private void AjouterCocktailClick(Object sender, EventArgs e)
+        {
+            m_aCocktail.AddCocktail(new ArrayList());
+        }
+
+        //Page d'ajout d'un cocktail
+        private void AffichageAjouterCocktail()
+        {
+            //Code 1
+            if (prev != 1)
+                m_recherche.Clean();
+            prev = 1;
+
+            //S'il y avait déjà qqc d'afficher, on l'efface
+            Vider();
+
+            int w = 200,
+                h = 300,
+                m = 75;
+
+            //TextBox nouveau cocktail
+            m_composants.Add(new Label());
+            Label lbCocktail = (Label)m_composants[m_composants.Count - 1];
+            lbCocktail.Parent = this;
+            lbCocktail.Location = new Point((this.Width / 6) - (w / 2), 50);
+            lbCocktail.Text = "Nom Cocktail";
+            lbCocktail.Visible = true;
+
+            TextBox tbCocktail = new TextBox();
+            m_composants.Add(tbCocktail);
+            tbCocktail.Parent = this;
+            tbCocktail.Size = new Size(130, 23);
+            tbCocktail.Location = new Point((this.Width / 6), 50);
+
+
+            //On affiche les alcools
+            PanneauCBAjout pAlcools = new PanneauCBAjout((this.Width / 6) - (w / 2), m, w + 100, h, "Alcools : ", m_recherche.NomAlcool(), m_recherche.ListeAlcools(), new EventHandler(CheckAlcool));
+            pAlcools.Parent = this;
+            m_composants.Add(pAlcools);
+
+
+
+            //On affiche les softs
+            PanneauCBAjout pSofts = new PanneauCBAjout((this.Width / 2) - (w / 4), m, w + 100, h, "Softs : ", m_recherche.NomSoft(), m_recherche.ListeSofts(), new EventHandler(CheckSoft));
+            //Panneau pSofts = new Panneau(300, 50, 200, 300, "Softs : ", m_recherche.NomSoft());
+            pSofts.Parent = this;
+            m_composants.Add(pSofts);
+
+            //Bouton de validation
+            Button bVal = new Button();
+            m_composants.Add(bVal);
+            bVal.Parent = this;
+            bVal.Text = "Ajouter";
+            bVal.Size = new Size(130, 23);
+            bVal.Location = new Point((this.Width / 3) - (bVal.Size.Width / 2), this.Height - 100);
+
+
+
+            //On lance l'ajout au click
+            bVal.Click += new EventHandler(AjouterCocktailClick);
+
+
+        }
+
+        //
+        //Ajout d'un soft
+        //
+
+        //Page d'ajout d'un soft
+        private void AddSoft(Object sender, EventArgs e)
+        {
+            AffAjoutSoft();
+        }
+
+        //Modification du nom du soft
+        private void ModAddSof(Object sender, EventArgs e)
+        {
+            m_ajoutSoft.Nom(((TextBox)sender).Text);
+        }
+
+        //Ajout du soft
+        private void ValAjoutSoft(Object s, EventArgs e)
+        {
+            if (m_ajoutSoft.Valider())
+                MessageBox.Show("Le soft a bien ete ajoute.");
+            else MessageBox.Show("Ce soft existe deja.");
         }
 
         //Affiche la page d'ajout d'un soft
@@ -461,6 +446,75 @@ namespace CocktailsApp
             bVal.Size = new Size(lB, hB);
             bVal.Location = new Point((tNom.Location.X + tNom.Width - lB) / 2, tNom.Location.Y + ecartY);
             bVal.Click += new EventHandler(ValAjoutSoft);
+        }
+
+        //
+        //Ajout d'un alcool
+        //
+
+        //Page d'ajout d'un alcool
+        private void AddAlcool(Object sender, EventArgs e)
+        {
+            AffAjoutAlcool();
+        }
+
+        //Modification du nom de l'alcool
+        private void ModAddAlc(Object sender, EventArgs e)
+        {
+            m_ajoutAlcool.Nom(((TextBox)sender).Text);
+        }
+
+        //Modification du degre de l'alcool
+        private void ModDegAlcool(Object sender, EventArgs e)
+        {
+            string str = ((TextBox)sender).Text;
+            if (str != "")
+            {
+                bool test = true;
+                bool change = false;
+                string bis = "";
+                //On verifie qu'il n'y a que des chiffres
+                for (int i = 0; (i < str.Length) && test; i++)
+                {
+                    if (test = (str[i] >= '0') && (str[i] <= '9') && (i < 3))
+                        bis += str[i];
+                }
+                change = !test;
+                //On enleve tous les 0 en debut de nombre
+                while((bis != "") && (bis[0] == '0'))
+                {
+                    string temp = "";
+                    for (int i = 1; i < bis.Length; i++)
+                        temp += bis[i];
+                    bis = temp;
+                    change = true;
+                }
+                if (test)
+                {
+                    int d = int.Parse(str);
+                    if(d > 100)
+                    {
+                        test = false;
+                        bis = "100";
+
+                    }
+                    else if(d > 0)
+                        m_ajoutAlcool.Degre(d);
+                }
+                //On affiche une valeur valide dans la TextBox
+                if(change)
+                {
+                    ((TextBox)sender).Text = bis;
+                    ((TextBox)sender).SelectionStart = bis.Length;
+                    ((TextBox)sender).SelectionLength = 0;
+                }
+            }
+        }
+
+        //Ajout de l'alcool
+        private void ValAjoutAlcool(Object s, EventArgs e)
+        {
+            MessageBox.Show(m_ajoutAlcool.Valider());
         }
 
         //Affiche la page d'ajout d'un alcool
@@ -533,32 +587,6 @@ namespace CocktailsApp
             bVal.Size = new Size(lB, hB);
             bVal.Location = new Point((tDeg.Location.X + tDeg.Width - lB) / 2, tDeg.Location.Y + ecartY);
             bVal.Click += new EventHandler(ValAjoutAlcool);
-        }
-
-        //Fonction de nettoyage de l'écran
-        protected void Vider()
-        {
-            for(int i = 0; i < m_composants.Count; i++)
-            {
-                if (this.Controls.Contains((Control)m_composants[i]))
-                {
-                    this.Controls.Remove((Control)m_composants[i]);
-                    ((Control)m_composants[i]).Dispose();
-                }
-            }
-            m_composants = new ArrayList();
-        }
-
-        protected Panneau GetPanneau()
-        {
-            for (int i = 0; i < m_composants.Count; i++)
-            {
-                if ((m_composants[i] is Panneau) && !(m_composants[i] is PanneauCB))
-                {
-                    return (Panneau)m_composants[i];
-                }
-            }
-            return null;
         }
 
       
