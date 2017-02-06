@@ -48,6 +48,7 @@ namespace CocktailsApp
             }
         }
 
+        //Fonction appel a la couche persistance pour recuperation des etapes recette du cocktail
         protected void Recuperation()
         {
             m_etapes = m_recherche.Instructions(m_cocktail);
