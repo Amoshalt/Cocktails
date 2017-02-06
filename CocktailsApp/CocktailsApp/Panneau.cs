@@ -60,11 +60,13 @@ namespace CocktailsApp
             m_sousPanel.Focus();
         }
 
+        // evenement curseur passe sur la zone du cocktail afficher --> case grisée
         protected void Survol(Object sender, EventArgs e)
         {
             ((Label)sender).BackColor = Color.LightGray;
         }
 
+        // evenement curseur passe quitte la zone du cocktail afficher
         protected void Sortie(Object sender, EventArgs e)
         {
             ((Label)sender).BackColor = Color.Transparent;
@@ -75,6 +77,7 @@ namespace CocktailsApp
             m_titre.Text = titre;
         }
 
+        //Fonction d'actualisation des donnees du tableau
         public void Donnees(string[] liste, EventHandler e)
         {
             Vider();

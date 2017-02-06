@@ -22,6 +22,7 @@ namespace CocktailsApp
             Donnees(liste, test, e);
         }
 
+        //Fonction d'actualisation des donnees du tableau
         public void Donnees(string[] liste, bool[] test, EventHandler e)
         {
             Vider();
@@ -64,6 +65,7 @@ namespace CocktailsApp
                 m_cElements[i].Checked = false;
         }
 
+        //Fonction de nettoyage de l'écran
         protected new void Vider()
         {
             base.Vider();

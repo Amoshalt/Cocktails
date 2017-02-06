@@ -26,13 +26,19 @@ namespace CocktailsApp
             m_persistance = p;
             m_soft = new soft();
         }
-
+        /* le soft m_soft prend comme nom le nom rentré en paramètre
+         Parametres:
+         * String nom du soft rentré
+         */
         public void Nom(string n)
         {
-            if(n != "")
+            // nom non vide
+            if (n != "")
                 m_soft.NOM_SOFT = n;
         }
 
+        /* Retourne un objet de type bool de succes ou non de l'existence du soft
+         */
         public bool Valider()
         {
             if (m_persistance.getExistenceSoft(m_soft.NOM_SOFT))
