@@ -17,12 +17,12 @@ namespace CocktailsApp
             Donnees(new string[0], new bool[0], null);
         }
 
-        public PanneauCBAjout(int x, int y, int l, int h, string titre, string[] liste, bool[] test, EventHandler e) : base(x, y, l, h, titre, new string[0], new bool[0], e)
+        public PanneauCBAjout(int x, int y, int l, int h, string titre, string[] liste, bool[] test, EventHandler e, EventHandler f) : base(x, y, l, h, titre, new string[0], new bool[0], e)
         {
-            Donnees(liste, test, e);
+            Donnees(liste, test, e, f);
         }
 
-        public void Donnees(string[] liste, bool[] test, EventHandler e)
+        public void Donnees(string[] liste, bool[] test, EventHandler e, EventHandler f)
         {
             Vider();
             m_lElements = new Label[liste.Length];
@@ -43,6 +43,7 @@ namespace CocktailsApp
                 m_tbElements[i].Location = new Point((this.Width / 2), ty);
                 m_tbElements[i].TabIndex = i;
                 m_tbElements[i].Click += new EventHandler(videTB);
+                m_tbElements[i].TextChanged += f;
 
                 //Ajout du label avec le nom de l'element
                 m_lElements[i] = new Label();
@@ -74,7 +75,8 @@ namespace CocktailsApp
 
         private void videTB(Object sender, EventArgs e)
         {
-            ((TextBox)sender).Text = "";
+            if(((TextBox)sender).Text == "Quantité en mL")
+                ((TextBox)sender).Text = "";
         }
 
         private void ClickIngredient(Object sender, EventArgs e)

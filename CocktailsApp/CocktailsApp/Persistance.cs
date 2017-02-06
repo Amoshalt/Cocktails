@@ -74,7 +74,7 @@ namespace CocktailsApp
         }
 
         //Retourne la liste des alcools
-        public ArrayList getAlccols()
+        public ArrayList getAlcools()
         {
             var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
             var table = contexteBD.CreateObjectSet<alcool>();
@@ -301,36 +301,16 @@ namespace CocktailsApp
 
         public void CreationCocktail(cocktail c)
         {
-            var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
-            var table = contexteBD.CreateObjectSet<cocktail>();
-            ArrayList lA = new ArrayList();
-
-            /*
-            // Create a new Order object.
-            cocktail co = new cocktail
-            {
-                this.NOM_COCKTAIL = c.NOM_COCKTAIL;
-                
-                OrderDate = DateTime.Now
-                // …
-            };
-
-            // Add the new object to the Orders collection.
-            db.Orders.InsertOnSubmit(ord);
-
-            // Submit the change to the database.
             try
             {
-                db.SubmitChanges();
+                connexionBD.cocktail.Add(c);
+                connexionBD.SaveChanges();
+                Reinit();
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                // Make some adjustments.
-                // ...
-                // Try again.
-                db.SubmitChanges();
-            }*/
+                Console.WriteLine("Erreur Ajout Cocktail : " + e.GetBaseException().Message);
+            }
         }
 
         public void CreationSoft(soft s)
@@ -359,6 +339,126 @@ namespace CocktailsApp
             {
                 Console.WriteLine("Erreur Ajout Soft : " + e.GetBaseException().Message);
             }
+        }
+
+        public void CreationEtape(etaperecette et)
+        {
+            try
+            {
+                connexionBD.etaperecette.Add(et);
+                connexionBD.SaveChanges();
+                Reinit();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erreur Ajout Soft : " + e.GetBaseException().Message);
+            }
+        }
+
+        //Fonction verifiant s'il existe un cocktail avec les memes ingredients (peu importe les dosages)
+        //Ne fonctionne pas s'il n'y a pas de soft ou pas d'alcool dans le cocktail
+        public bool ExistenceCocktail(ArrayList al, ArrayList so)
+        {
+            var contexteBD = ((IObjectContextAdapter)connexionBD).ObjectContext;
+            var tIAlcools = contexteBD.CreateObjectSet<ingredientalcool>();
+            var tISofts = contexteBD.CreateObjectSet<ingredientsoft>();
+            ArrayList lAvec = new ArrayList(), lSans = new ArrayList();
+            ArrayList liste = new ArrayList();
+            int[] alcools = new int[al.Count];
+            for (int i = 0; i < al.Count; i++)
+                alcools[i] = (int)al[i];
+            int[] softs = new int[so.Count];
+            for (int i = 0; i < so.Count; i++)
+                softs[i] = (int)so[i];
+            //On recherche les cocktails contenant tous nos alcools et aucun autre
+            try
+            {
+                var req1 = from ia in tIAlcools
+                           where alcools.Contains(ia.NUM_ALCOOL)
+                           select ia.NUM_COCKTAIL;
+                var res1 = ((ObjectQuery)req1).Execute(MergeOption.AppendOnly);
+                foreach (int co in res1)
+                {
+                    lAvec.Add(co);
+                    Console.WriteLine("Avec : " + co);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erreur (recherche alcools) : " + ex.GetBaseException().Message);
+            }
+            try
+            {
+                var req2 = from ia in tIAlcools
+                           where !alcools.Contains(ia.NUM_ALCOOL)
+                           select ia.NUM_COCKTAIL;
+                var res2 = ((ObjectQuery)req2).Execute(MergeOption.AppendOnly);
+                foreach (int co in res2)
+                {
+                    lSans.Add(co);
+                }
+                //lAvec contient les numeros des cocktails contenant au moins un alcool de la liste
+                //lSans contient les numeros des cocktails contenant au moins un alcool qui n'est pas dans la liste
+                //Tout cocktail dont le numero est dans lAvec et pas dans lSans contient tous les alcools de notre liste
+                for(int i = 0; i < lAvec.Count; i++)
+                {
+                    if (!lSans.Contains(lAvec[i]))
+                        liste.Add(lAvec[i]);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erreur (recherche alcools) : " + ex.GetBaseException().Message);
+            }
+            //On utilise la même méthode pour les softs
+            lSans = new ArrayList();
+            lAvec = new ArrayList();
+
+
+
+            Console.WriteLine("...");
+            try
+            {
+                var req1 = from ia in tISofts
+                           where softs.Contains(ia.NUM_SOFT)
+                           select ia.NUM_COCKTAIL;
+                var res1 = ((ObjectQuery)req1).Execute(MergeOption.AppendOnly);
+                foreach (int co in res1)
+                {
+                    lAvec.Add(co);
+                    Console.WriteLine("Avec : " + co);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erreur (recherche softs) : " + ex.GetBaseException().Message);
+            }
+            try
+            {
+                var req2 = from ia in tISofts
+                           where !softs.Contains(ia.NUM_SOFT)
+                           select ia.NUM_COCKTAIL;
+                var res2 = ((ObjectQuery)req2).Execute(MergeOption.AppendOnly);
+                foreach (int co in res2)
+                {
+                    lSans.Add(co);
+                    Console.WriteLine("Sans : " + co);
+                }
+                //lAvec contient les numeros des cocktails contenant au moins un alcool de la liste
+                //lSans contient les numeros des cocktails contenant au moins un alcool qui n'est pas dans la liste
+                //Tout cocktail dont le numero est dans lAvec et pas dans lSans contient tous les alcools de notre liste
+                for (int i = 0; i < lAvec.Count; i++)
+                {
+                    //Si il y a correspondance pour les softs et les alcools, c'est que le cocktail existe
+                    if (!lSans.Contains(lAvec[i]) && liste.Contains(lAvec[i]))
+                        return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erreur (recherche softs) : " + ex.GetBaseException().Message);
+            }
+            return false;
         }
 
         /* Fonction de recherche des cocktails disponibles a partir d'une liste de softs et une autre d'alcools

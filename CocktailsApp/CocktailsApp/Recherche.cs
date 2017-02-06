@@ -45,7 +45,7 @@ namespace CocktailsApp
             }
 
             //Initialisation des alcools
-            ArrayList alcools = m_persistance.getAlccols();
+            ArrayList alcools = m_persistance.getAlcools();
             m_alcools = new string[alcools.Count];
             m_alcoolID = new int[alcools.Count];
             m_alcoolOK = new bool[alcools.Count];

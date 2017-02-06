@@ -311,7 +311,105 @@ namespace CocktailsApp
         //Valide l'ajout d'un cocktail
         private void AjouterCocktailClick(Object sender, EventArgs e)
         {
-            m_aCocktail.AddCocktail(new ArrayList());
+            MessageBox.Show(m_aCocktail.AddCocktail(new ArrayList()));
+        }
+
+        //Modifie le nom du cocktail
+        private void AjCoNom(Object sender, EventArgs e)
+        {
+            m_aCocktail.Nom(((TextBox)sender).Text);
+        }
+
+        //Ajoute/retire un alcool de la liste
+        private void AjCoModAlc(Object sender, EventArgs e)
+        {
+            m_aCocktail.ChangeAl(((CheckBox)sender).TabIndex);
+        }
+
+        //Ajoute/retire un soft
+        private void AjCoModSo(Object sender, EventArgs e)
+        {
+            m_aCocktail.ChangeSo(((CheckBox)sender).TabIndex);
+        }
+
+        //Modifie la quantite d'un alcool
+        private void AjCoQttAl(Object sender, EventArgs e)
+        {
+            string str = ((TextBox)sender).Text;
+            if (str != "")
+            {
+                bool test = true;
+                bool change = false;
+                string bis = "";
+                //On verifie qu'il n'y a que des chiffres
+                for (int i = 0; (i < str.Length) && test; i++)
+                {
+                    if (test = (str[i] >= '0') && (str[i] <= '9'))
+                        bis += str[i];
+                }
+                change = !test;
+                //On enleve tous les 0 en debut de nombre
+                while ((bis != "") && (bis[0] == '0'))
+                {
+                    string temp = "";
+                    for (int i = 1; i < bis.Length; i++)
+                        temp += bis[i];
+                    bis = temp;
+                    change = true;
+                }
+                if (test)
+                {
+                    int d = int.Parse(str);
+                    m_aCocktail.QttAl(((TextBox)sender).TabIndex, d);
+                }
+                //On affiche une valeur valide dans la TextBox
+                if (change)
+                {
+                    ((TextBox)sender).Text = bis;
+                    ((TextBox)sender).SelectionStart = bis.Length;
+                    ((TextBox)sender).SelectionLength = 0;
+                }
+            }
+        }
+
+        //Modifie la quantite d'un soft
+        private void AjCoQttSo(Object sender, EventArgs e)
+        {
+            string str = ((TextBox)sender).Text;
+            if (str != "")
+            {
+                bool test = true;
+                bool change = false;
+                string bis = "";
+                //On verifie qu'il n'y a que des chiffres
+                for (int i = 0; (i < str.Length) && test; i++)
+                {
+                    if (test = (str[i] >= '0') && (str[i] <= '9'))
+                        bis += str[i];
+                }
+                change = !test;
+                //On enleve tous les 0 en debut de nombre
+                while ((bis != "") && (bis[0] == '0'))
+                {
+                    string temp = "";
+                    for (int i = 1; i < bis.Length; i++)
+                        temp += bis[i];
+                    bis = temp;
+                    change = true;
+                }
+                if (test)
+                {
+                    int d = int.Parse(str);
+                    m_aCocktail.QttSo(((TextBox)sender).TabIndex, d);
+                }
+                //On affiche une valeur valide dans la TextBox
+                if (change)
+                {
+                    ((TextBox)sender).Text = bis;
+                    ((TextBox)sender).SelectionStart = bis.Length;
+                    ((TextBox)sender).SelectionLength = 0;
+                }
+            }
         }
 
         //Page d'ajout d'un cocktail
@@ -342,17 +440,16 @@ namespace CocktailsApp
             tbCocktail.Parent = this;
             tbCocktail.Size = new Size(130, 23);
             tbCocktail.Location = new Point((this.Width / 6), 50);
+            tbCocktail.TextChanged += new EventHandler(AjCoNom);
 
 
             //On affiche les alcools
-            PanneauCBAjout pAlcools = new PanneauCBAjout((this.Width / 6) - (w / 2), m, w + 100, h, "Alcools : ", m_recherche.NomAlcool(), m_recherche.ListeAlcools(), new EventHandler(CheckAlcool));
+            PanneauCBAjout pAlcools = new PanneauCBAjout((this.Width / 6) - (w / 2), m, w + 100, h, "Alcools : ", m_recherche.NomAlcool(), m_recherche.ListeAlcools(), new EventHandler(AjCoModAlc), new EventHandler(AjCoQttAl));
             pAlcools.Parent = this;
             m_composants.Add(pAlcools);
 
-
-
             //On affiche les softs
-            PanneauCBAjout pSofts = new PanneauCBAjout((this.Width / 2) - (w / 4), m, w + 100, h, "Softs : ", m_recherche.NomSoft(), m_recherche.ListeSofts(), new EventHandler(CheckSoft));
+            PanneauCBAjout pSofts = new PanneauCBAjout((this.Width / 2) - (w / 4), m, w + 100, h, "Softs : ", m_recherche.NomSoft(), m_recherche.ListeSofts(), new EventHandler(AjCoModSo), new EventHandler(AjCoQttSo));
             //Panneau pSofts = new Panneau(300, 50, 200, 300, "Softs : ", m_recherche.NomSoft());
             pSofts.Parent = this;
             m_composants.Add(pSofts);
